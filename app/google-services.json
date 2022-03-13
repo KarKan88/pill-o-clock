@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "740536477313",
+    "project_id": "pill-o--clock",
+    "storage_bucket": "pill-o--clock.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:740536477313:android:814c873d4686239c88cf80",
+        "android_client_info": {
+          "package_name": "com.example.pilloclock"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "740536477313-1ln6g0m40alpb26dcpu237ggodg0ismg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCjdRHR5b56ZcDsBHF_YNiYP5pvZAXYVhM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "740536477313-1ln6g0m40alpb26dcpu237ggodg0ismg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
