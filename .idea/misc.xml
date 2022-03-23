@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="..\:/Users/surya/git/pill-o-clock/app/src/main/res/layout/activity_login.xml" value="0.17708333333333334" />
       </map>
     </option>
