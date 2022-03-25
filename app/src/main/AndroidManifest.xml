@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PillOClock">
         <activity
+            android:name=".EnterDetails"
+            android:exported="false" />
+        <activity
             android:name=".AddMedication"
             android:exported="false" />
         <activity

@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:context=".EnterDetails">
+
+        <ImageView
+            android:id="@+id/iconImg"
+            android:layout_width="77dp"
+            android:layout_height="58dp"
+            android:layout_marginStart="128dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/heading"
+            tools:srcCompat="@tools:sample/avatars" />
+
+        <TextView
+            android:id="@+id/heading"
+            android:layout_width="238dp"
+            android:layout_height="27dp"
+            android:layout_marginStart="44dp"
+            android:layout_marginTop="4dp"
+            android:text="Enter details manually"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/medicationNameEdit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="44dp"
+            android:layout_marginTop="28dp"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:minHeight="48dp"
+            android:text="Medication Name"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/iconImg" />
+
+        <EditText
+            android:id="@+id/brandNameEdit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="44dp"
+            android:layout_marginTop="28dp"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:minHeight="48dp"
+            android:text="Brand Name"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/medicationNameEdit" />
+
+        <EditText
+            android:id="@+id/dosageEdit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="44dp"
+            android:layout_marginTop="28dp"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:minHeight="48dp"
+            android:text="Dosage"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/brandNameEdit" />
+
+        <TextView
+            android:id="@+id/startDateHeading"
+            android:layout_width="175dp"
+            android:layout_height="23dp"
+            android:layout_marginStart="44dp"
+            android:layout_marginTop="28dp"
+            android:ems="10"
+            android:minHeight="48dp"
+            android:text="Start Date"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/dosageEdit" />
+
+        <Button
+            android:id="@+id/startDateButton"
+            android:layout_width="142dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="44dp"
+            android:layout_marginTop="4dp"
+            android:text="_/_/_"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/startDateHeading" />
+
+        <TextView
+            android:id="@+id/endDateHeading"
+            android:layout_width="175dp"
+            android:layout_height="23dp"
+            android:layout_marginStart="1dp"
+            android:layout_marginTop="354dp"
+            android:ems="10"
+            android:minHeight="48dp"
+            android:text="End Date"
+            app:layout_constraintStart_toEndOf="@+id/startDateHeading"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/endDateButton"
+            android:layout_width="142dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="216dp"
+            android:layout_marginTop="4dp"
+            android:text="_/_/_"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/endDateHeading" />
+
+        <CheckBox
+            android:id="@+id/refillCheckBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="44dp"
+            android:layout_marginTop="20dp"
+            android:text="Refill on end date"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/endDateButton" />
+
+        <TextView
+            android:id="@+id/intakeHeading"
+            android:layout_width="175dp"
+            android:layout_height="23dp"
+            android:layout_marginStart="44dp"
+            android:layout_marginTop="28dp"
+            android:ems="10"
+            android:minHeight="48dp"
+            android:text="Intake days and time"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/refillCheckBox" />
+
+        <RadioButton
+            android:id="@+id/monRadioButton"
+            android:layout_width="91dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="44dp"
+            android:layout_marginTop="552dp"
+            android:text="Mon"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <RadioButton
+            android:id="@+id/tueRadioButton"
+            android:layout_width="91dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="92dp"
+            android:layout_marginTop="28dp"
+            android:text="Tue"
+            app:layout_constraintStart_toStartOf="@id/monRadioButton"
+            app:layout_constraintTop_toTopOf="@id/intakeHeading" />
+
+        <RadioButton
+            android:id="@+id/wedRadioButton"
+            android:layout_width="91dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="92dp"
+            android:layout_marginTop="28dp"
+            android:text="Wed"
+            app:layout_constraintStart_toStartOf="@id/tueRadioButton"
+            app:layout_constraintTop_toTopOf="@id/intakeHeading" />
+
+        <RadioButton
+            android:id="@+id/thuRadioButton"
+            android:layout_width="91dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="88dp"
+            android:layout_marginTop="28dp"
+            android:text="Thu"
+            app:layout_constraintStart_toStartOf="@id/wedRadioButton"
+            app:layout_constraintTop_toTopOf="@id/intakeHeading" />
+
+        <RadioButton
+            android:id="@+id/friRadioButton"
+            android:layout_width="91dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="44dp"
+            android:layout_marginTop="52dp"
+            android:text="Fri"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/monRadioButton" />
+
+        <RadioButton
+            android:id="@+id/satRadioButton"
+            android:layout_width="91dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="92dp"
+            android:layout_marginTop="48dp"
+            android:text="Sat"
+            app:layout_constraintStart_toStartOf="@id/friRadioButton"
+            app:layout_constraintTop_toTopOf="@id/tueRadioButton" />
+
+        <RadioButton
+            android:id="@+id/sunRadioButton"
+            android:layout_width="91dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="92dp"
+            android:layout_marginTop="48dp"
+            android:text="Sun"
+            app:layout_constraintStart_toStartOf="@id/satRadioButton"
+            app:layout_constraintTop_toTopOf="@id/wedRadioButton" />
+
+        <Button
+            android:id="@+id/timeButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="8dp"
+            android:text="Time"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/friRadioButton" />
+
+        <TextView
+            android:id="@+id/notesHeading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="44dp"
+            android:layout_marginTop="8dp"
+            android:text="Notes"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/timeButton" />
+
+        <EditText
+            android:id="@+id/notesEdit"
+            android:layout_width="358dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="36dp"
+            android:layout_marginTop="4dp"
+            android:minWidth="48dp"
+            android:text="Enter notes"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/notesHeading" />
+
+        <Button
+            android:id="@+id/nextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="300dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="23dp"
+            android:text="Next"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/notesEdit" />
+
+        <Button
+            android:id="@+id/cancelButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="16dp"
+            android:text="Cancel"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/notesEdit" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

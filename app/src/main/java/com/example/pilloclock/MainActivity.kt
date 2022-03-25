@@ -1,7 +1,9 @@
 package com.example.pilloclock
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Button
 import android.widget.TextView
 import com.example.pilloclock.data.AppDatabase
 import com.example.pilloclock.data.dao.UserDao
@@ -16,12 +18,13 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val userDao = AppDatabase.getDatabase(this.application).userDao()
-        userRepository = UserRepository(userDao)
-        userRepository.addUser(User(1,"Kannan","Nanthakumar","kk@gmail.com","password",3,2,""))
 
-        val textView1 = findViewById<TextView>(R.id.test123)
-        textView1.setText(userRepository.getUser().toString())
+
+        var button = findViewById<Button>(R.id.button)
+        button.setOnClickListener {
+            val intent = Intent(this, AddMedication::class.java)
+            startActivity(intent)
+        }
 
     }
 }
