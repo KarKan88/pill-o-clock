@@ -10,13 +10,22 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PillOClock">
         <activity
+            android:name=".DashboardActivity"
+            android:exported="false" />
+        <activity
             android:name=".LoginActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SignUpActivity"
             android:exported="false" />
         <activity
             android:name=".RegistrationActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
+            android:exported="false" />
+        <activity
+            android:name=".LandingPageActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -25,5 +34,4 @@
             </intent-filter>
         </activity>
     </application>
-
 </manifest>
