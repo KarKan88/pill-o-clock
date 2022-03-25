@@ -7,15 +7,48 @@ import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import android.widget.Button
-import android.widget.TimePicker
+import android.widget.*
 import androidx.annotation.RequiresApi
 import java.util.*
 
 class EnterDetails : AppCompatActivity() {
+    var iconImage: ImageView? = null
+    var nameEdit: EditText? = null
+    var brandEdit: EditText? = null
+    var dosageEdit: EditText? = null
+    var startDateButton: Button? = null
+    var endDateButton: Button? = null
+    var refillCheckbox: CheckBox? = null
+    var monRadioButton: RadioButton? = null
+    var tueRadioButton: RadioButton? = null
+    var wedRadioButton: RadioButton? = null
+    var thuRadioButton: RadioButton? = null
+    var friRadioButton: RadioButton? = null
+    var satRadioButton: RadioButton? = null
+    var sunRadioButton: RadioButton? = null
+    var timeButton: Button? = null
+    var notesEdit: EditText? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_enter_details)
+
+        iconImage = findViewById(R.id.iconImg)
+        nameEdit = findViewById(R.id.medicationNameEdit)
+        brandEdit = findViewById(R.id.brandNameEdit)
+        dosageEdit = findViewById(R.id.dosageEdit)
+        startDateButton = findViewById(R.id.startDateButton)
+        endDateButton = findViewById(R.id.endDateButton)
+        refillCheckbox = findViewById(R.id.refillCheckBox)
+        monRadioButton = findViewById(R.id.monRadioButton)
+        tueRadioButton = findViewById(R.id.tueRadioButton)
+        wedRadioButton = findViewById(R.id.wedRadioButton)
+        thuRadioButton = findViewById(R.id.thuRadioButton)
+        friRadioButton = findViewById(R.id.friRadioButton)
+        satRadioButton = findViewById(R.id.satRadioButton)
+        sunRadioButton = findViewById(R.id.sunRadioButton)
+        timeButton = findViewById(R.id.timeButton)
+        notesEdit = findViewById(R.id.notesEdit)
 
         var button = findViewById<Button>(R.id.nextButton)
         button.setOnClickListener {
@@ -26,8 +59,6 @@ class EnterDetails : AppCompatActivity() {
 
     @RequiresApi(Build.VERSION_CODES.N)
     fun clickStartDatePicker(view: View) {
-        var startDateButton = findViewById<Button>(R.id.startDateButton)
-        startDateButton.setOnClickListener {
             val c = Calendar.getInstance()
             val year = c.get(Calendar.YEAR)
             val month = c.get(Calendar.MONTH)
@@ -35,16 +66,13 @@ class EnterDetails : AppCompatActivity() {
 
             val dialog = DatePickerDialog(this, DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
                 val text = """$dayOfMonth-${monthOfYear + 1}-$year"""
-                startDateButton.text = text
+                startDateButton!!.text = text
             }, year, month, day)
             dialog.show()
-        }
     }
 
     @RequiresApi(Build.VERSION_CODES.N)
     fun clickEndDatePicker(view: View) {
-        var endDateButton = findViewById<Button>(R.id.endDateButton)
-        endDateButton.setOnClickListener {
             val c = Calendar.getInstance()
             val year = c.get(Calendar.YEAR)
             val month = c.get(Calendar.MONTH)
@@ -52,10 +80,9 @@ class EnterDetails : AppCompatActivity() {
 
             val dialog = DatePickerDialog(this, DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
                 val text = """$dayOfMonth-${monthOfYear + 1}-$year"""
-                endDateButton.text = text
+                endDateButton!!.text = text
             }, year, month, day)
             dialog.show()
-        }
     }
 
     @RequiresApi(Build.VERSION_CODES.N)
@@ -65,7 +92,9 @@ class EnterDetails : AppCompatActivity() {
         val minute = c.get(Calendar.MINUTE)
 
         val dialog = TimePickerDialog(this, TimePickerDialog.OnTimeSetListener(function = {view, h, m ->
-            val text = "h.toString() + \" : \" + m +\" : " })
+            val text = "$h:$m"
+            timeButton!!.text = text
+        })
             , hour, minute, false)
 
         dialog.show()
