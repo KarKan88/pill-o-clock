@@ -38,9 +38,9 @@
             android:layout_marginStart="44dp"
             android:layout_marginTop="28dp"
             android:ems="10"
+            android:hint="Medication Name"
             android:inputType="textPersonName"
             android:minHeight="48dp"
-            android:text="Medication Name"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/iconImg" />
 
@@ -51,9 +51,9 @@
             android:layout_marginStart="44dp"
             android:layout_marginTop="28dp"
             android:ems="10"
+            android:hint="Brand Name"
             android:inputType="textPersonName"
             android:minHeight="48dp"
-            android:text="Brand Name"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/medicationNameEdit" />
 
@@ -64,9 +64,9 @@
             android:layout_marginStart="44dp"
             android:layout_marginTop="28dp"
             android:ems="10"
+            android:hint="Dosage"
             android:inputType="textPersonName"
             android:minHeight="48dp"
-            android:text="Dosage"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/brandNameEdit" />
 
@@ -88,8 +88,8 @@
             android:layout_height="48dp"
             android:layout_marginStart="44dp"
             android:layout_marginTop="4dp"
-            android:text="_/_/_"
             android:onClick="clickStartDatePicker"
+            android:text="_/_/_"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/startDateHeading" />
 
@@ -97,22 +97,22 @@
             android:id="@+id/endDateHeading"
             android:layout_width="175dp"
             android:layout_height="23dp"
-            android:layout_marginStart="1dp"
-            android:layout_marginTop="354dp"
+            android:layout_marginStart="44dp"
+            android:layout_marginTop="12dp"
             android:ems="10"
             android:minHeight="48dp"
             android:text="End Date"
-            app:layout_constraintStart_toEndOf="@+id/startDateHeading"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/startDateButton" />
 
         <Button
             android:id="@+id/endDateButton"
             android:layout_width="142dp"
             android:layout_height="48dp"
-            android:layout_marginStart="216dp"
-            android:layout_marginTop="4dp"
-            android:text="_/_/_"
+            android:layout_marginStart="44dp"
+            android:layout_marginTop="8dp"
             android:onClick="clickEndDatePicker"
+            android:text="_/_/_"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/endDateHeading" />
 
@@ -121,7 +121,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="44dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="21dp"
             android:text="Refill on end date"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/endDateButton" />
@@ -142,11 +142,11 @@
             android:id="@+id/monRadioButton"
             android:layout_width="91dp"
             android:layout_height="48dp"
-            android:layout_marginStart="44dp"
-            android:layout_marginTop="552dp"
+            android:layout_marginStart="36dp"
+            android:layout_marginTop="4dp"
             android:text="Mon"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/intakeHeading" />
 
         <RadioButton
             android:id="@+id/tueRadioButton"
@@ -182,8 +182,8 @@
             android:id="@+id/friRadioButton"
             android:layout_width="91dp"
             android:layout_height="48dp"
-            android:layout_marginStart="44dp"
-            android:layout_marginTop="52dp"
+            android:layout_marginStart="36dp"
+            android:layout_marginTop="48dp"
             android:text="Fri"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@id/monRadioButton" />
@@ -213,9 +213,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="40dp"
-            android:layout_marginTop="8dp"
-            android:text="Time"
+            android:layout_marginTop="24dp"
             android:onClick="clickTimePicker"
+            android:text="Time"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/friRadioButton" />
 
@@ -235,8 +235,8 @@
             android:layout_height="48dp"
             android:layout_marginStart="36dp"
             android:layout_marginTop="4dp"
+            android:hint="Enter notes"
             android:minWidth="48dp"
-            android:text="Enter notes"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/notesHeading" />
 
@@ -247,6 +247,7 @@
             android:layout_marginStart="300dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="23dp"
+            android:onClick="clickNextButton"
             android:text="Next"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
@@ -258,10 +259,43 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="40dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="20dp"
             android:text="Cancel"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/notesEdit" />
+
+        <TextView
+            android:id="@+id/orText"
+            android:layout_width="0dp"
+            android:layout_height="24dp"
+            android:layout_marginStart="48dp"
+            android:layout_marginTop="40dp"
+            android:text="OR"
+            app:layout_constraintStart_toEndOf="@id/endDateButton"
+            app:layout_constraintTop_toBottomOf="@+id/startDateButton" />
+
+        <EditText
+            android:id="@+id/pillCountEdit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="28dp"
+            android:layout_marginTop="44dp"
+            android:hint="0"
+            android:inputType="number"
+            android:minWidth="48dp"
+            android:minHeight="48dp"
+            app:layout_constraintStart_toEndOf="@id/orText"
+            app:layout_constraintTop_toBottomOf="@+id/startDateButton" />
+
+        <TextView
+            android:id="@+id/pillCountHeading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="28dp"
+            android:layout_marginTop="12dp"
+            android:text="Pill Count"
+            app:layout_constraintStart_toEndOf="@id/orText"
+            app:layout_constraintTop_toBottomOf="@+id/startDateButton" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

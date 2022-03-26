@@ -9,6 +9,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.*
 import androidx.annotation.RequiresApi
+import java.text.SimpleDateFormat
 import java.util.*
 
 class EnterDetails : AppCompatActivity() {
@@ -28,6 +29,11 @@ class EnterDetails : AppCompatActivity() {
     var sunRadioButton: RadioButton? = null
     var timeButton: Button? = null
     var notesEdit: EditText? = null
+    var pillCountEdit: EditText? = null
+
+    var startDateSet: Boolean? = false
+    var endDateSet: Boolean? = false
+    var timeSet: Boolean? = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,12 +55,9 @@ class EnterDetails : AppCompatActivity() {
         sunRadioButton = findViewById(R.id.sunRadioButton)
         timeButton = findViewById(R.id.timeButton)
         notesEdit = findViewById(R.id.notesEdit)
+        pillCountEdit = findViewById(R.id.pillCountEdit)
 
-        var button = findViewById<Button>(R.id.nextButton)
-        button.setOnClickListener {
-            val intent = Intent(this, VerifyDetails::class.java)
-            startActivity(intent)
-        }
+
     }
 
     @RequiresApi(Build.VERSION_CODES.N)
@@ -67,6 +70,7 @@ class EnterDetails : AppCompatActivity() {
             val dialog = DatePickerDialog(this, DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
                 val text = """$dayOfMonth-${monthOfYear + 1}-$year"""
                 startDateButton!!.text = text
+                startDateSet = true
             }, year, month, day)
             dialog.show()
     }
@@ -81,6 +85,7 @@ class EnterDetails : AppCompatActivity() {
             val dialog = DatePickerDialog(this, DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
                 val text = """$dayOfMonth-${monthOfYear + 1}-$year"""
                 endDateButton!!.text = text
+                endDateSet = true
             }, year, month, day)
             dialog.show()
     }
@@ -94,9 +99,54 @@ class EnterDetails : AppCompatActivity() {
         val dialog = TimePickerDialog(this, TimePickerDialog.OnTimeSetListener(function = {view, h, m ->
             val text = "$h:$m"
             timeButton!!.text = text
+            timeSet = true
         })
             , hour, minute, false)
 
         dialog.show()
+    }
+
+    fun clickNextButton(view: View) {
+        val days = getDays()
+        if(nameEdit!!.text.isEmpty() || brandEdit!!.text.isEmpty() || dosageEdit!!.text.isEmpty() || !startDateSet!! || (!endDateSet!! && pillCountEdit!!.text.isEmpty()) || !timeSet!! || days == "") {
+            val toast = Toast.makeText(this, "Please fill in all the fields", Toast.LENGTH_LONG)
+            toast.show()
+        }
+        else {
+            val pillModel = PillModel()
+            pillModel.name = nameEdit!!.text.toString()
+            pillModel.brand = brandEdit!!.text.toString()
+            pillModel.dosage = dosageEdit!!.text.toString()
+            pillModel.startDate = startDateButton!!.text.toString()
+            if(endDateSet!!) {
+                pillModel.endDate = endDateButton!!.text.toString()
+            }
+            else {
+                pillModel.pillsLeft = pillCountEdit!!.text.toString().toDouble()
+            }
+            if(refillCheckbox!!.isChecked) {
+                pillModel.refillDate = endDateButton!!.text.toString()
+            }
+            pillModel.time = timeButton!!.text.toString()
+            pillModel.days = days
+            pillModel.notes = notesEdit!!.text.toString()
+            val dateFormat = SimpleDateFormat("dd.MM.yyyy")
+            pillModel.addedDate = dateFormat.format(Date())
+
+            val intent = Intent(this, VerifyDetails::class.java)
+            intent.putExtra("Pill", pillModel)
+            startActivity(intent)
+        }
+    }
+
+    private fun getDays(): String {
+        var days = ""
+        val daysRadioButtons = arrayOf(monRadioButton, tueRadioButton, wedRadioButton, thuRadioButton, friRadioButton, satRadioButton, sunRadioButton)
+        for(d in daysRadioButtons) {
+            if(d!!.isChecked) {
+                days += d.text
+            }
+        }
+        return days
     }
 }
