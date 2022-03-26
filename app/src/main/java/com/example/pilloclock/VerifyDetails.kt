@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.EditText
+import android.widget.ImageView
 import android.widget.TextView
 
 class VerifyDetails : AppCompatActivity() {
@@ -21,7 +22,12 @@ class VerifyDetails : AppCompatActivity() {
         val endDateText = findViewById<TextView>(R.id.endDateText)
         val refillText = findViewById<TextView>(R.id.refillText)
         val intakeText = findViewById<TextView>(R.id.intakeText)
+        val icon = findViewById<ImageView>(R.id.iconImg)
 
+        val uri = """drawable/${pillModel!!.icon}"""
+        val imageResource = resources.getIdentifier(uri, null, packageName)
+        val res = resources.getDrawable(imageResource, null)
+        icon.setImageDrawable(res)
         nameText.text = pillModel!!.name
         brandText.text = pillModel!!.brand
         dosageText.text = pillModel!!.dosage

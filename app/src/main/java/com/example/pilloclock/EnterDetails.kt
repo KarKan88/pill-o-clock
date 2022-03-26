@@ -30,6 +30,7 @@ class EnterDetails : AppCompatActivity() {
     var timeButton: Button? = null
     var notesEdit: EditText? = null
     var pillCountEdit: EditText? = null
+    var spinner: Spinner? = null
 
     var startDateSet: Boolean? = false
     var endDateSet: Boolean? = false
@@ -58,6 +59,10 @@ class EnterDetails : AppCompatActivity() {
         timeButton = findViewById(R.id.timeButton)
         notesEdit = findViewById(R.id.notesEdit)
         pillCountEdit = findViewById(R.id.pillCountEdit)
+        spinner = findViewById(R.id.spinner)
+
+        val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, resources.getStringArray(R.array.Icons))
+        spinner!!.adapter = adapter
 
         if(pillModel != null) {
             restoreValues(pillModel)
@@ -138,6 +143,7 @@ class EnterDetails : AppCompatActivity() {
             pillModel.notes = notesEdit!!.text.toString()
             val dateFormat = SimpleDateFormat("dd.MM.yyyy")
             pillModel.addedDate = dateFormat.format(Date())
+            pillModel.icon = spinner!!.selectedItem.toString()
 
             val intent = Intent(this, VerifyDetails::class.java)
             intent.putExtra("Pill", pillModel)
@@ -176,6 +182,9 @@ class EnterDetails : AppCompatActivity() {
         }
         timeButton!!.text = pillModel.time
         notesEdit!!.setText(pillModel.notes)
+        val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, resources.getStringArray(R.array.Icons))
+        spinner!!.adapter = adapter
+        spinner!!.setSelection(adapter.getPosition(pillModel.icon))
     }
 
     fun clickCancelButton(view: View) {
