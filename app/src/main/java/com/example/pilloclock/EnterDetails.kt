@@ -39,6 +39,8 @@ class EnterDetails : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_enter_details)
 
+        val pillModel = intent.getSerializableExtra("Pill") as PillModel?
+
         iconImage = findViewById(R.id.iconImg)
         nameEdit = findViewById(R.id.medicationNameEdit)
         brandEdit = findViewById(R.id.brandNameEdit)
@@ -56,6 +58,10 @@ class EnterDetails : AppCompatActivity() {
         timeButton = findViewById(R.id.timeButton)
         notesEdit = findViewById(R.id.notesEdit)
         pillCountEdit = findViewById(R.id.pillCountEdit)
+
+        if(pillModel != null) {
+            restoreValues(pillModel)
+        }
 
 
     }
@@ -144,9 +150,31 @@ class EnterDetails : AppCompatActivity() {
         val daysRadioButtons = arrayOf(monRadioButton, tueRadioButton, wedRadioButton, thuRadioButton, friRadioButton, satRadioButton, sunRadioButton)
         for(d in daysRadioButtons) {
             if(d!!.isChecked) {
-                days += d.text
+                days += """${d.text} """
             }
         }
         return days
+    }
+
+    private fun restoreValues(pillModel: PillModel) {
+        nameEdit!!.setText(pillModel.name)
+        brandEdit!!.setText(pillModel.brand)
+        dosageEdit!!.setText(pillModel.dosage)
+        startDateButton!!.text = pillModel.startDate
+        if(pillModel.endDate != "") {
+            endDateButton!!.text = pillModel.endDate
+        }
+        if(pillModel.pillsLeft != 0.0) {
+            pillCountEdit!!.setText(pillModel.pillsLeft.toString())
+        }
+        refillCheckbox!!.isChecked =  pillModel.refillDate != ""
+        val intakeRadioButtons = arrayOf(monRadioButton, tueRadioButton, wedRadioButton, thuRadioButton, friRadioButton, satRadioButton, sunRadioButton)
+        for(x in intakeRadioButtons) {
+            if(x!!.text in pillModel.days) {
+                x.isChecked = true
+            }
+        }
+        timeButton!!.text = pillModel.time
+        notesEdit!!.setText(pillModel.notes)
     }
 }
