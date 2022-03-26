@@ -177,4 +177,8 @@ class EnterDetails : AppCompatActivity() {
         timeButton!!.text = pillModel.time
         notesEdit!!.setText(pillModel.notes)
     }
+
+    fun clickCancelButton(view: View) {
+        onBackPressed()
+    }
 }

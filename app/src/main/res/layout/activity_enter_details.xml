@@ -261,6 +261,7 @@
             android:layout_marginStart="40dp"
             android:layout_marginTop="20dp"
             android:text="Cancel"
+            android:onClick="clickCancelButton"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/notesEdit" />
 
