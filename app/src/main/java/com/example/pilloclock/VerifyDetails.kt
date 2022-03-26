@@ -7,6 +7,10 @@ import android.view.View
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
+import com.example.pilloclock.data.AppDatabase
+import com.example.pilloclock.data.entity.Pill
+import com.example.pilloclock.data.repo.PillRepository
+import java.util.*
 
 class VerifyDetails : AppCompatActivity() {
     var pillModel: PillModel? = null
@@ -49,6 +53,17 @@ class VerifyDetails : AppCompatActivity() {
     fun clickEdit(view: View) {
         val intent = Intent(this, EnterDetails::class.java)
         intent.putExtra("Pill", pillModel)
+        startActivity(intent)
+    }
+
+    fun clickSubmit(view: View) {
+        val pillDao = AppDatabase.getDatabase(this.application).pillDao()
+        val size = pillDao.getAll().size
+        val pillEntity = Pill(size+1, pillModel!!.name, pillModel!!.brand, pillModel!!.time, pillModel!!.days, pillModel!!.icon, pillModel!!.startDate, pillModel!!.endDate, pillModel!!.dosage, pillModel!!.pillsLeft, pillModel!!.addedDate, pillModel!!.description, pillModel!!.notes, pillModel!!.doctor)
+        val pillRepository = PillRepository(pillDao)
+        pillRepository.addPill(pillEntity)
+
+        val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
     }
 }
