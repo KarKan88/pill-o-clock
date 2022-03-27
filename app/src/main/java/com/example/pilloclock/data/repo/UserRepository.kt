@@ -8,5 +8,7 @@ class UserRepository (private val userDao: UserDao) {
         userDao.insertAll(user);
     }
 
-    fun getUser():List<User> = userDao.getAll()
+    fun getUsers():List<User> = userDao.getAll()
+
+    fun getUser(email: String):User = userDao.get(email)
 }
