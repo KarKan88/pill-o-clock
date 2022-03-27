@@ -2,6 +2,7 @@ package com.example.pilloclock.data.entity
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import java.io.Serializable
 
 @Entity
 data class Pill(
@@ -16,6 +17,7 @@ data class Pill(
     val endDate: String?,
     val dosage: String?,
     val pillsLeft: Double?,
+    val refill: Boolean?,
     val addedDate: String?,
     val description: String?,
     val notes: String?,

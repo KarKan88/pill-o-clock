@@ -13,7 +13,7 @@ class PillModel : Observable(), Serializable {
     var startDate = ""
     var endDate = ""
     var dosage = ""
-    var refillDate = ""
+    var refill = false
     var pillsLeft = 0.0
     var addedDate = ""
     var description = ""

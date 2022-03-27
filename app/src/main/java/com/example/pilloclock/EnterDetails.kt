@@ -136,7 +136,7 @@ class EnterDetails : AppCompatActivity() {
                 pillModel.pillsLeft = pillCountEdit!!.text.toString().toDouble()
             }
             if(refillCheckbox!!.isChecked) {
-                pillModel.refillDate = endDateButton!!.text.toString()
+                pillModel.refill = true
             }
             pillModel.time = timeButton!!.text.toString()
             pillModel.days = days
@@ -173,7 +173,7 @@ class EnterDetails : AppCompatActivity() {
         if(pillModel.pillsLeft != 0.0) {
             pillCountEdit!!.setText(pillModel.pillsLeft.toString())
         }
-        refillCheckbox!!.isChecked =  pillModel.refillDate != ""
+        refillCheckbox!!.isChecked =  pillModel.refill
         val intakeRadioButtons = arrayOf(monRadioButton, tueRadioButton, wedRadioButton, thuRadioButton, friRadioButton, satRadioButton, sunRadioButton)
         for(x in intakeRadioButtons) {
             if(x!!.text in pillModel.days) {

@@ -42,10 +42,7 @@ class VerifyDetails : AppCompatActivity() {
         else {
             endDateText.text = pillModel!!.pillsLeft.toString()
         }
-        if(pillModel!!.refillDate != "") {
-            val text = "True"
-            refillText.text = text
-        }
+        refillText.text = pillModel!!.refill.toString()
         val intake = """${pillModel!!.days} at ${pillModel!!.time}"""
         intakeText.text = intake
     }
@@ -59,7 +56,7 @@ class VerifyDetails : AppCompatActivity() {
     fun clickSubmit(view: View) {
         val pillDao = AppDatabase.getDatabase(this.application).pillDao()
         val size = pillDao.getAll().size
-        val pillEntity = Pill(size+1, pillModel!!.name, pillModel!!.brand, pillModel!!.time, pillModel!!.days, pillModel!!.icon, pillModel!!.startDate, pillModel!!.endDate, pillModel!!.dosage, pillModel!!.pillsLeft, pillModel!!.addedDate, pillModel!!.description, pillModel!!.notes, pillModel!!.doctor)
+        val pillEntity = Pill(size+1, pillModel!!.name, pillModel!!.brand, pillModel!!.time, pillModel!!.days, pillModel!!.icon, pillModel!!.startDate, pillModel!!.endDate, pillModel!!.dosage, pillModel!!.pillsLeft, pillModel!!.refill, pillModel!!.addedDate, pillModel!!.description, pillModel!!.notes, pillModel!!.doctor)
         val pillRepository = PillRepository(pillDao)
         pillRepository.addPill(pillEntity)
 

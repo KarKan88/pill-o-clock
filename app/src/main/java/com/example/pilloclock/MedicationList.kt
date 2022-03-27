@@ -1,6 +1,7 @@
 package com.example.pilloclock
 
 import android.content.Context
+import android.content.Intent
 import android.content.res.Resources
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -22,36 +23,36 @@ class MedicationList : AppCompatActivity() {
 
         val pill = Pill(
             1, "Med 1", "Prozac", "10AM", "Mon, Tue, Wed", "blue_pill",
-            "20/10/22", "22/11/22", "10Mg", 66.0, "27/03/22",
+            "20/10/22", "22/11/22", "10Mg", 66.0, true, "27/03/22",
             "", "", ""
         )
 
         val pill2 = Pill(
             1, "Med 2", "Aspirin", "10AM", "Mon, Tue, Wed", "pink_pill",
-            "20/10/22", "22/11/22", "10Mg", 66.0, "27/03/22",
+            "20/10/22", "22/11/22", "10Mg", 66.0, false,  "27/03/22",
             "", "", ""
         )
 
-        val pillList = listOf<Pill>(pill, pill2)
+        val pillList = listOf(pill, pill2)
 
         val listView = findViewById<ListView>(R.id.medicationView)
 
         val resources = resources
         listView.adapter = MedicationListAdapter(this, pillList, resources, packageName)
+
+        listView.setOnItemClickListener {parent, view, position, id ->
+            val intent = Intent(this, ViewDetails::class.java)
+            intent.putExtra("Position", position)
+            startActivity(intent)
+        }
     }
 
     private class MedicationListAdapter(context: Context, pillList: List<Pill>, resources: Resources, packageName: String): BaseAdapter() {
-        private val mContext: Context
-        private val mPillList: List<Pill>
-        private val mResources: Resources
-        private val mPackageName: String
+        private val mContext: Context = context
+        private val mPillList: List<Pill> = pillList
+        private val mResources: Resources = resources
+        private val mPackageName: String = packageName
 
-        init {
-            mContext = context
-            mPillList = pillList
-            mResources = resources
-            mPackageName = packageName
-        }
         override fun getCount(): Int {
             return mPillList.size
         }
