@@ -13,6 +13,28 @@
         <entry key="app/src/main/res/layout/fragment_item.xml" value="0.22585144042968752" />
         <entry key="app/src/main/res/layout/fragment_item_list.xml" value="0.25052083333333336" />
         <entry key="app/src/main/res/layout/loading.xml" value="0.2" />
+        <entry key="..\:/Users/surya/git/pill-o-clock/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/Users/surya/git/pill-o-clock/app/src/main/res/layout/activity_medication_list.xml" value="0.22864583333333333" />
+        <entry key="..\:/Users/surya/git/pill-o-clock/app/src/main/res/layout/activity_verify_details.xml" value="0.2" />
+        <entry key="..\:/Users/surya/git/pill-o-clock/app/src/main/res/layout/activity_view_details.xml" value="0.22864583333333333" />
+        <entry key="..\:/Users/surya/git/pill-o-clock/app/src/main/res/layout/activity_view_detials.xml" value="0.22864583333333333" />
+        <entry key="..\:/Users/surya/git/pill-o-clock/app/src/main/res/layout/fragment_input.xml" value="0.2203125" />
+        <entry key="..\:/Users/surya/git/pill-o-clock/app/src/main/res/layout/inputs_holder.xml" value="0.21739130434782608" />
+        <entry key="..\:/Users/surya/git/pill-o-clock/app/src/main/res/layout/medication_list_item.xml" value="0.22864583333333333" />
+        <entry key="..\:/Users/anyaa/Documents/Dalhousie/Winter_2022/CSCI_4176/Project/Repo/pill-o-clock/app/src/main/res/drawable/ic_baseline_arrow_circle_right_24.xml" value="0.1" />
+        <entry key="..\:/Users/anyaa/Documents/Dalhousie/Winter_2022/CSCI_4176/Project/Repo/pill-o-clock/app/src/main/res/drawable/selector.xml" value="0.1045" />
+        <entry key="..\:/Users/anyaa/Documents/Dalhousie/Winter_2022/CSCI_4176/Project/Repo/pill-o-clock/app/src/main/res/layout/activity_calendar.xml" value="0.25" />
+        <entry key="..\:/Users/anyaa/Documents/Dalhousie/Winter_2022/CSCI_4176/Project/Repo/pill-o-clock/app/src/main/res/layout/activity_dashboard.xml" value="0.22" />
+        <entry key="..\:/Users/anyaa/Documents/Dalhousie/Winter_2022/CSCI_4176/Project/Repo/pill-o-clock/app/src/main/res/layout/activity_landing_page.xml" value="0.15806159420289856" />
+        <entry key="..\:/Users/anyaa/Documents/Dalhousie/Winter_2022/CSCI_4176/Project/Repo/pill-o-clock/app/src/main/res/layout/activity_login.xml" value="0.16145833333333334" />
+        <entry key="..\:/Users/anyaa/Documents/Dalhousie/Winter_2022/CSCI_4176/Project/Repo/pill-o-clock/app/src/main/res/layout/activity_main.xml" value="0.3265625" />
+        <entry key="..\:/Users/anyaa/Documents/Dalhousie/Winter_2022/CSCI_4176/Project/Repo/pill-o-clock/app/src/main/res/layout/activity_sign_up.xml" value="0.14739583333333334" />
+        <entry key="..\:/Users/anyaa/Documents/Dalhousie/Winter_2022/CSCI_4176/Project/Repo/pill-o-clock/app/src/main/res/layout/calendar_cell.xml" value="0.12" />
+        <entry key="..\:/Users/anyaa/Documents/Dalhousie/Winter_2022/CSCI_4176/Project/Repo/pill-o-clock/app/src/main/res/layout/fragment_dashboard.xml" value="0.3265625" />
+        <entry key="..\:/Users/anyaa/Documents/Dalhousie/Winter_2022/CSCI_4176/Project/Repo/pill-o-clock/app/src/main/res/layout/fragment_landing__page.xml" value="0.26358695652173914" />
+        <entry key="..\:/Users/anyaa/Documents/Dalhousie/Winter_2022/CSCI_4176/Project/Repo/pill-o-clock/app/src/main/res/layout/fragment_login.xml" value="0.3265625" />
+        <entry key="..\:/Users/anyaa/Documents/Dalhousie/Winter_2022/CSCI_4176/Project/Repo/pill-o-clock/app/src/main/res/layout/fragment_sign_up.xml" value="0.3265625" />
+        <entry key="..\:/Users/anyaa/Documents/Dalhousie/Winter_2022/CSCI_4176/Project/Repo/pill-o-clock/app/src/main/res/menu/bottom_nav.xml" value="0.3333333333333333" />
       </map>
     </option>
   </component>

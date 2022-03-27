@@ -13,6 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PillOClock">
         <activity
+            android:name=".CalendarActivity"
+            android:exported="false" />
+        <activity
             android:name=".DashboardActivity"
             android:exported="false"/>
         <activity
@@ -59,4 +62,5 @@
             android:enabled="true" >
         </receiver>
     </application>
+
 </manifest>
