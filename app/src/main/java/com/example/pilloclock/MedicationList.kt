@@ -18,22 +18,8 @@ class MedicationList : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_medication_list)
 
-       //val pillDao = AppDatabase.getDatabase(this.application).pillDao()
-        //val pillList = pillDao.getAll()
-
-        val pill = Pill(
-            1, "Med 1", "Prozac", "10AM", "Mon, Tue, Wed", "blue_pill",
-            "20/10/22", "22/11/22", "10Mg", 66.0, true, "27/03/22",
-            "", "", ""
-        )
-
-        val pill2 = Pill(
-            1, "Med 2", "Aspirin", "10AM", "Mon, Tue, Wed", "pink_pill",
-            "20/10/22", "22/11/22", "10Mg", 66.0, false,  "27/03/22",
-            "", "", ""
-        )
-
-        val pillList = listOf(pill, pill2)
+        val pillDao = AppDatabase.getDatabase(this.application).pillDao()
+        val pillList = pillDao.getAll()
 
         val listView = findViewById<ListView>(R.id.medicationView)
 

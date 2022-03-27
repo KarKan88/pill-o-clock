@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import com.example.pilloclock.data.AppDatabase
 import com.example.pilloclock.data.entity.Pill
 
 class ViewDetails : AppCompatActivity() {
@@ -17,19 +18,8 @@ class ViewDetails : AppCompatActivity() {
         val position = intent.getSerializableExtra("Position") as Int
         pillPos = position
 
-        val pill = Pill(
-            1, "Med 1", "Prozac", "10AM", "Mon, Tue, Wed", "blue_pill",
-            "20/10/22", "22/11/22", "10Mg", 66.0, true, "27/03/22",
-            "", "", ""
-        )
-
-        val pill2 = Pill(
-            1, "Med 2", "Aspirin", "10AM", "Mon, Tue, Wed", "pink_pill",
-            "20/10/22", "22/11/22", "10Mg", 66.0, false, "27/03/22",
-            "", "", ""
-        )
-
-        val pillList = listOf(pill, pill2)
+        val pillDao = AppDatabase.getDatabase(this.application).pillDao()
+        val pillList = pillDao.getAll()
 
         val nameText = findViewById<TextView>(R.id.nameText)
         val brandText = findViewById<TextView>(R.id.brandText)

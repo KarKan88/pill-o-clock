@@ -32,20 +32,6 @@ class EditDetails : AppCompatActivity() {
         setContentView(R.layout.activity_edit_details)
         val position = intent.getSerializableExtra("Position") as Int
 
-        val pill = Pill(
-            1, "Med 1", "Prozac", "10AM", "Mon, Tue, Wed", "blue_pill",
-            "20/10/22", "22/11/22", "10Mg", 66.0, true, "27/03/22",
-            "", "", ""
-        )
-
-        val pill2 = Pill(
-            2, "Med 2", "Aspirin", "10AM", "Mon, Tue, Wed", "pink_pill",
-            "20/10/22", "22/11/22", "10Mg", 66.0, false, "27/03/22",
-            "", "", ""
-        )
-
-        val pillList = listOf(pill, pill2)
-
         iconImage = findViewById(R.id.iconImg)
         nameEdit = findViewById(R.id.medicationNameEdit)
         brandEdit = findViewById(R.id.brandNameEdit)
@@ -68,9 +54,10 @@ class EditDetails : AppCompatActivity() {
         val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, resources.getStringArray(R.array.Icons))
         spinner!!.adapter = adapter
 
-        restoreValues(pillList[position])
-
         val pillDao = AppDatabase.getDatabase(this.application).pillDao()
+        val pillList = pillDao.getAll()
+
+        restoreValues(pillList[position])
 
         val deleteButton = findViewById<Button>(R.id.deleteButton)
         deleteButton.setOnClickListener {
@@ -79,7 +66,7 @@ class EditDetails : AppCompatActivity() {
 
         val saveButton = findViewById<Button>(R.id.saveButton)
         saveButton.setOnClickListener {
-
+            pillDao.insertAll(pillList[position])
         }
 
         val cancelButton = findViewById<Button>(R.id.cancelButton)
