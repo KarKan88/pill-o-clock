@@ -1,27 +1,34 @@
 package com.example.pilloclock
 
-import androidx.appcompat.app.AppCompatActivity
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.content.Context
+import android.os.Build
 import android.os.Bundle
-import android.widget.TextView
-import com.example.pilloclock.data.AppDatabase
-import com.example.pilloclock.data.dao.UserDao
-import com.example.pilloclock.data.entity.User
-import com.example.pilloclock.data.repo.UserRepository
+import androidx.appcompat.app.AppCompatActivity
+import com.example.pilloclock.services.CHANNEL_ID
+
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var userRepository: UserRepository
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        createNotificationChannel()
+    }
 
-        val userDao = AppDatabase.getDatabase(this.application).userDao()
-        userRepository = UserRepository(userDao)
-        userRepository.addUser(User(1,"Kannan","Nanthakumar","kk@gmail.com","password",3,2,""))
-
-        val textView1 = findViewById<TextView>(R.id.test123)
-        textView1.setText(userRepository.getUser().toString())
-
+    private fun createNotificationChannel() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val name = getString(R.string.channel_name)
+            val descriptionText = getString(R.string.channel_description)
+            val importance = NotificationManager.IMPORTANCE_DEFAULT
+            val channel = NotificationChannel(CHANNEL_ID, name, importance).apply {
+                description = descriptionText
+            }
+            val notificationManager: NotificationManager =
+                getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+            notificationManager.createNotificationChannel(channel)
+        }
     }
 }

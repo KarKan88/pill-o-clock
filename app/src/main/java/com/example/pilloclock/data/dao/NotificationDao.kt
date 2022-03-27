@@ -1,5 +1,6 @@
 package com.example.pilloclock.data.dao
 
+import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
@@ -14,6 +15,9 @@ interface NotificationDao {
     @Delete
     fun delete(notification: Notification)
 
-    @Query("SELECT * FROM notification")
-    fun getAll(): List<Notification>
+    @Query("SELECT * FROM notification ORDER BY timestamp")
+    fun getAll(): LiveData<List<Notification>>
+
+    @Query("DELETE FROM notification")
+    fun emptyTable()
 }
