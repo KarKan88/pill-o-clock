@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Pill O\' Clock</string>
+    <string name="channel_name">PillNotification</string>
+    <string name="channel_description">Notification related to pill</string>
 </resources>
