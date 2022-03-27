@@ -31,6 +31,12 @@ class MedicationList : AppCompatActivity() {
             intent.putExtra("Position", position)
             startActivity(intent)
         }
+
+        val addButton = findViewById<Button>(R.id.addButton)
+        addButton.setOnClickListener {
+            val intent = Intent(this, AddMedication::class.java)
+            startActivity(intent)
+        }
     }
 
     private class MedicationListAdapter(context: Context, pillList: List<Pill>, resources: Resources, packageName: String): BaseAdapter() {
