@@ -22,7 +22,7 @@ class MainActivity : AppCompatActivity() {
 
         var button = findViewById<Button>(R.id.button)
         button.setOnClickListener {
-            val intent = Intent(this, AddMedication::class.java)
+            val intent = Intent(this, MedicationList::class.java)
             startActivity(intent)
         }
 
