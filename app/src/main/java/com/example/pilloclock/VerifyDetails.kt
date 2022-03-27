@@ -60,7 +60,7 @@ class VerifyDetails : AppCompatActivity() {
         val pillRepository = PillRepository(pillDao)
         pillRepository.addPill(pillEntity)
 
-        val intent = Intent(this, MainActivity::class.java)
+        val intent = Intent(this, MedicationList::class.java)
         startActivity(intent)
     }
 }
