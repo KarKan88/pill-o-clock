@@ -1,29 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="com.example.pilloclock">
+    package="com.example.pilloclock">
 
+    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM"/>
     <application
-            android:allowBackup="true"
-            android:icon="@mipmap/pilloclock"
-            android:label="@string/app_name"
-            android:roundIcon="@mipmap/pilloclock"
-            android:supportsRtl="true"
-            android:theme="@style/Theme.Pilloclock">
+        android:allowBackup="true"
+        android:icon="@mipmap/pilloclock"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/pilloclock"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.PillOClock">
         <activity
-                android:name=".LoginActivity"
-                android:exported="true"/>
+            android:name=".DashboardActivity"
+            android:exported="false" />
         <activity
-                android:name=".MainActivity"
-                android:exported="true">
+            android:name=".LoginActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SignUpActivity"
+            android:exported="false" />
+        <activity
+            android:name=".RegistrationActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MainActivity"
+            android:exported="false" />
+        <activity
+            android:name=".LandingPageActivity"
+            android:exported="true">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
+                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-                android:name=".SignUpActivity"
-                android:exported="true"/>
+        <receiver
+            android:name=".services.MyAlarmReceiver"
+            android:enabled="true" >
+        </receiver>
     </application>
-
 </manifest>
