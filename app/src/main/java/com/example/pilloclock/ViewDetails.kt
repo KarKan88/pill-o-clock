@@ -1,5 +1,6 @@
 package com.example.pilloclock
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -8,11 +9,13 @@ import android.widget.TextView
 import com.example.pilloclock.data.entity.Pill
 
 class ViewDetails : AppCompatActivity() {
+    var pillPos: Int? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_view_details)
 
         val position = intent.getSerializableExtra("Position") as Int
+        pillPos = position
 
         val pill = Pill(
             1, "Med 1", "Prozac", "10AM", "Mon, Tue, Wed", "blue_pill",
@@ -37,7 +40,7 @@ class ViewDetails : AppCompatActivity() {
         val intakeText = findViewById<TextView>(R.id.intakeText)
         val icon = findViewById<ImageView>(R.id.iconImg)
 
-        val currPill = pillList[position]
+        val currPill = pillList[pillPos!!]
         nameText.text = currPill.name
         brandText.text = currPill.brand
         dosageText.text = currPill.dosage
@@ -58,6 +61,8 @@ class ViewDetails : AppCompatActivity() {
     }
 
     fun clickEditButton(view: View) {
-        
+        val intent = Intent(this, EditDetails::class.java)
+        intent.putExtra("Position", pillPos)
+        startActivity(intent)
     }
 }
