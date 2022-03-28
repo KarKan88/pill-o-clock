@@ -8,12 +8,7 @@ import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.content.Context
 import android.os.Build
-import com.example.pilloclock.services.CHANNEL_ID
-import android.widget.TextView
-import com.example.pilloclock.data.AppDatabase
-import com.example.pilloclock.data.dao.UserDao
-import com.example.pilloclock.data.entity.User
-import com.example.pilloclock.data.repo.UserRepository
+import com.example.pilloclock.receiver.CHANNEL_ID
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

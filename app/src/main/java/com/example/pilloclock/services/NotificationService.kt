@@ -7,6 +7,10 @@ import android.content.Intent
 import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
+import com.example.pilloclock.receiver.MyAlarmReceiver
+import com.example.pilloclock.receiver.notificatioID
+import com.example.pilloclock.receiver.notificationMessage
+import com.example.pilloclock.receiver.notificationTitle
 import java.util.*
 
 class NotificationService {
@@ -15,7 +19,7 @@ class NotificationService {
                              notificationTitleStr: String,
                              notificationMessageStr: String,
                              appCompatActivity: AppCompatActivity,
-                             calendar: Calendar) {
+                             intervalMillis: Long) {
         val intent = Intent(applicationContext, MyAlarmReceiver::class.java)
         intent.putExtra(notificationTitle,notificationTitleStr)
         intent.putExtra(notificationMessage,notificationMessageStr)
@@ -27,8 +31,8 @@ class NotificationService {
 
         val alarm = appCompatActivity.getSystemService(AppCompatActivity.ALARM_SERVICE) as AlarmManager
 
-        alarm.setExactAndAllowWhileIdle(
-            AlarmManager.RTC_WAKEUP, calendar.timeInMillis,pIntent
+        alarm.setRepeating(
+            AlarmManager.RTC_WAKEUP, intervalMillis,AlarmManager.INTERVAL_DAY,pIntent
         )
     }
 }

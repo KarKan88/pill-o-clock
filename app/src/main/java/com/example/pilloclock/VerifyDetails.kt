@@ -1,24 +1,26 @@
 package com.example.pilloclock
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
+import android.os.Build
 import android.os.Bundle
 import android.view.View
-import android.widget.EditText
 import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
+import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AppCompatActivity
 import com.example.example.FDAMedicationResponse
 import com.example.pilloclock.data.AppDatabase
 import com.example.pilloclock.data.entity.Pill
 import com.example.pilloclock.data.repo.PillRepository
 import com.example.pilloclock.services.FDAMedicationService
-import java.util.*
+import com.example.pilloclock.services.NotificationService
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.util.*
 
 class VerifyDetails : AppCompatActivity() {
     var pillModel: PillModel? = null
@@ -66,6 +68,7 @@ class VerifyDetails : AppCompatActivity() {
         startActivity(intent)
     }
 
+    @RequiresApi(Build.VERSION_CODES.M)
     fun clickSubmit(view: View) {
         val loadingBar = findViewById<ProgressBar>(R.id.loadingBar)
         loadingBar.visibility = ProgressBar.VISIBLE
@@ -77,10 +80,22 @@ class VerifyDetails : AppCompatActivity() {
             }
             val pillDao = AppDatabase.getDatabase(this.application).pillDao()
             val size = pillDao.getAll().size
-            val pillEntity = Pill(size+1, pillModel!!.name, pillModel!!.brand, pillModel!!.time, pillModel!!.days, pillModel!!.icon, pillModel!!.startDate, pillModel!!.endDate, pillModel!!.dosage, pillModel!!.pillsLeft, pillModel!!.refill, pillModel!!.addedDate, pillModel!!.description, pillModel!!.notes, pillModel!!.doctor)
+            val pillEntity = Pill(size+1, pillModel!!.name, pillModel!!.brand, pillModel!!.time, pillModel!!.days, pillModel!!.icon, pillModel!!.startDate, pillModel!!.endDate, pillModel!!.dosage, pillModel!!.pillsLeft, pillModel!!.refill, pillModel!!.addedDate, pillModel!!.description, pillModel!!.notes, pillModel!!.doctor, false)
             val pillRepository = PillRepository(pillDao)
             pillRepository.addPill(pillEntity)
             loadingBar.visibility = ProgressBar.GONE
+
+            val calendar = Calendar.getInstance()
+            calendar[Calendar.HOUR_OF_DAY] = pillModel!!.time.split(":")[0].toInt()
+            calendar[Calendar.MINUTE] = pillModel!!.time.split(":")[1].toInt()
+            calendar[Calendar.SECOND] = 0
+            val notificationService = NotificationService()
+            notificationService.scheduleNotification(this.applicationContext,
+            "Medication Time",
+            "Time to take "+pillModel!!.name,
+            this,
+                calendar.timeInMillis)
+
             val intent = Intent(this, MedicationList::class.java)
             startActivity(intent)
         }

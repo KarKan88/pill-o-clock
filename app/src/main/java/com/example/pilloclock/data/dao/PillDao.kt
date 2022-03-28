@@ -1,15 +1,19 @@
 package com.example.pilloclock.data.dao
 
-import androidx.room.Dao
-import androidx.room.Delete
-import androidx.room.Insert
-import androidx.room.Query
+import androidx.room.*
 import com.example.pilloclock.data.entity.Pill
 
 @Dao
 interface PillDao {
     @Insert
+    @OnConflictStrategy
     fun insertAll(vararg pill: Pill)
+
+    @Update
+    fun update(pill: Pill): Int
+
+    @Query("UPDATE pill SET isTaken = :isTaken WHERE id = :pillId")
+    fun updateIsTaken(pillId: Int, isTaken: Boolean): Int
 
     @Delete
     fun delete(pill: Pill)

@@ -1,4 +1,4 @@
-package com.example.pilloclock.services
+package com.example.pilloclock.receiver
 
 import android.app.NotificationManager
 import android.content.BroadcastReceiver

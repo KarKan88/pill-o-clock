@@ -6,5 +6,9 @@ import com.example.pilloclock.data.entity.Pill
 class PillRepository(private val pillDao: PillDao) {
     fun addPill(pill: Pill) = pillDao.insertAll(pill)
 
-    fun getUser():List<Pill> = pillDao.getAll()
+    fun updatePill(pill: Pill) = pillDao.update(pill)
+
+    fun updatePillTaken(pillId: Int, isTaken: Boolean):Int = pillDao.updateIsTaken(pillId, isTaken)
+
+    fun getPills():List<Pill> = pillDao.getAll()
 }
