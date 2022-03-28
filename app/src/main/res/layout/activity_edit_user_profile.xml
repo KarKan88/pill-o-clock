@@ -49,7 +49,6 @@
         android:layout_marginTop="13dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Name"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/fname" />
@@ -74,7 +73,6 @@
         android:layout_marginTop="13dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Name"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/lname" />
@@ -122,27 +120,26 @@
         app:layout_constraintTop_toBottomOf="@+id/gender"   />
 
     <TextView
-        android:id="@+id/date_of_birth"
+        android:id="@+id/age"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="28dp"
         android:layout_marginTop="24dp"
-        android:text="Date of birth"
+        android:text="Age"
         android:textColor="@color/black"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/male_checkbox" />
 
     <EditText
-        android:id="@+id/date_of_birth_inputField"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/age_inputField"
+        android:layout_width="97dp"
+        android:layout_height="47dp"
         android:layout_marginStart="28dp"
         android:layout_marginTop="24dp"
         android:ems="10"
-        android:inputType="date"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/date_of_birth" />
+        app:layout_constraintTop_toBottomOf="@+id/age" />
 
     <Button
         android:id="@+id/cancel_button"
