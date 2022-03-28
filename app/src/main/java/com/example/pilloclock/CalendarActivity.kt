@@ -20,7 +20,12 @@ class CalendarActivity : AppCompatActivity(), CalendarAdapter.OnItemListener {
     // Initialize Variables
     private var month: TextView? = null
     private var calendarRecyclerView: RecyclerView? = null
-    private var selectedDate: LocalDate? = null
+
+    companion object {
+        var selectedDate: LocalDate? = null
+        @RequiresApi(Build.VERSION_CODES.O)
+        var cusor: LocalDate = LocalDate.now();
+    }
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -125,7 +130,14 @@ class CalendarActivity : AppCompatActivity(), CalendarAdapter.OnItemListener {
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onItemClick(position: Int, day: String) {
         if(!day.equals("")){
-            TODO("Display list of medication or refills on clicked date")
+            var dayInt = Integer.parseInt(day)
+            var monthInt = selectedDate?.monthValue
+            var select : LocalDate? = monthInt?.let { LocalDate.of(2021, it, dayInt) }
+
+            if (select != null) {
+                cusor = select
+                setMonthView()
+            }
         }
     }
 }

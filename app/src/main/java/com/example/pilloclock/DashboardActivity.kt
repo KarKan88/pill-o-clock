@@ -57,8 +57,4 @@ class DashboardActivity : AppCompatActivity() {
         val myListAdapter = TaskListViewAdapter(this,taskService.getTaskList(formatted))
         listView.adapter = myListAdapter
     }
-
-    private fun navigateToActitity(java: Type) {
-        TODO("Implement navigation")
-    }
 }

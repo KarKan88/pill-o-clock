@@ -1,10 +1,12 @@
 package com.example.pilloclock
 
 import android.graphics.Color
+import android.os.Build
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
 import java.time.LocalDate
 
@@ -14,7 +16,7 @@ class CalendarAdapter : RecyclerView.Adapter<CalendarViewHolder> {
     var onItemListener: OnItemListener
 
     // Constructor
-    constructor(monthDays: ArrayList<String>, onItemListener: CalendarActivity) : super() {
+    constructor(monthDays: ArrayList<String>, onItemListener: CalendarActivity) {
         this.monthDays = monthDays
         this.onItemListener = onItemListener
     }
@@ -29,8 +31,14 @@ class CalendarAdapter : RecyclerView.Adapter<CalendarViewHolder> {
     }
 
     // Set text of cell
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onBindViewHolder(holder: CalendarViewHolder, position: Int) {
         holder.dayOfMonth?.setText(monthDays.get(position))
+        var dayMatch = holder.dayOfMonth?.text?.toString().equals(CalendarActivity.cusor.dayOfMonth.toString())
+        var monthMatch = CalendarActivity.selectedDate?.month?.equals(CalendarActivity.cusor.month)
+        if(dayMatch == true && monthMatch == true){
+            holder.cellContainer?.setBackgroundColor(Color.LTGRAY)
+        }
     }
 
     // Return number of days in month
