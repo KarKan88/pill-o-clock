@@ -1,10 +1,12 @@
 package com.example.pilloclock
 
+import android.graphics.Color
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import java.time.LocalDate
 
 class CalendarAdapter : RecyclerView.Adapter<CalendarViewHolder> {
     // Initialize variables
@@ -22,7 +24,7 @@ class CalendarAdapter : RecyclerView.Adapter<CalendarViewHolder> {
         var inflater:LayoutInflater = LayoutInflater.from(parent.context)
         var view: View = inflater.inflate(R.layout.calendar_cell, parent, false)
         var layoutParams:ViewGroup.LayoutParams = view.layoutParams
-        layoutParams.height = (parent.height * 0.1).toInt()
+        layoutParams.height = (parent.height * 0.2).toInt()
         return CalendarViewHolder(view, onItemListener)
     }
 
