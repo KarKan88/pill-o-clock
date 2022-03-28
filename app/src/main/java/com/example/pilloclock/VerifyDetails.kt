@@ -24,8 +24,10 @@ class VerifyDetails : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_verify_details)
+        // Get the Pill object from EnterDetails page
         pillModel = intent.getSerializableExtra("Pill") as PillModel?
 
+        // Init views
         val nameText = findViewById<TextView>(R.id.nameText)
         val brandText = findViewById<TextView>(R.id.brandText)
         val dosageText = findViewById<TextView>(R.id.dosageText)
@@ -35,10 +37,13 @@ class VerifyDetails : AppCompatActivity() {
         val intakeText = findViewById<TextView>(R.id.intakeText)
         val icon = findViewById<ImageView>(R.id.iconImg)
 
+        // Set the icon
         val uri = """drawable/${pillModel!!.icon}"""
         val imageResource = resources.getIdentifier(uri, null, packageName)
         val res = resources.getDrawable(imageResource, null)
         icon.setImageDrawable(res)
+
+        // Fill in details
         nameText.text = pillModel!!.name
         brandText.text = pillModel!!.brand
         dosageText.text = pillModel!!.dosage
@@ -78,6 +83,7 @@ class VerifyDetails : AppCompatActivity() {
     }
 
     fun getPurpose(callback: (String?) -> Unit) {
+        // returns the purpose of the pill from the FDA API
         val BASE_URL = "https://api.fda.gov/"
 
         val retrofit = Retrofit.Builder()

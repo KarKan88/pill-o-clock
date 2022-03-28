@@ -3,6 +3,7 @@ package com.example.pilloclock
 import java.io.Serializable
 import java.util.*
 
+// Only exists because it is serializable and hence can be sent from one activity to another
 class PillModel : Observable(), Serializable {
     var id = ""
     var name = ""

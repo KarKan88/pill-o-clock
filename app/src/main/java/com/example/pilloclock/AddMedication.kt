@@ -10,7 +10,8 @@ class AddMedication : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_medication)
 
-        var button = findViewById<Button>(R.id.btnManual)
+        // Navigate to the EnterDetails page to manually enter details
+        val button = findViewById<Button>(R.id.btnManual)
         button.setOnClickListener {
             val intent = Intent(this, EnterDetails::class.java)
             startActivity(intent)

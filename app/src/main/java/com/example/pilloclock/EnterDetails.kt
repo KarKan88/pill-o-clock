@@ -40,8 +40,10 @@ class EnterDetails : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_enter_details)
 
+        // Get the pill object from the previous page if the user clicks Edit
         val pillModel = intent.getSerializableExtra("Pill") as PillModel?
 
+        // init views
         iconImage = findViewById(R.id.iconImg)
         nameEdit = findViewById(R.id.medicationNameEdit)
         brandEdit = findViewById(R.id.brandNameEdit)
@@ -61,6 +63,7 @@ class EnterDetails : AppCompatActivity() {
         pillCountEdit = findViewById(R.id.pillCountEdit)
         spinner = findViewById(R.id.spinner)
 
+        // Set the icon names as the adapter
         val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, resources.getStringArray(R.array.Icons))
         spinner!!.adapter = adapter
 
@@ -119,11 +122,13 @@ class EnterDetails : AppCompatActivity() {
 
     fun clickNextButton(view: View) {
         val days = getDays()
+        // Check for empty input fields
         if(nameEdit!!.text.isEmpty() || brandEdit!!.text.isEmpty() || dosageEdit!!.text.isEmpty() || !startDateSet!! || (!endDateSet!! && pillCountEdit!!.text.isEmpty()) || !timeSet!! || days == "") {
             val toast = Toast.makeText(this, "Please fill in all the fields", Toast.LENGTH_LONG)
             toast.show()
         }
         else {
+            // No input errors, so create the Serializable Pill model to send to the Verify page
             val pillModel = PillModel()
             pillModel.name = nameEdit!!.text.toString()
             pillModel.brand = brandEdit!!.text.toString()
@@ -151,6 +156,7 @@ class EnterDetails : AppCompatActivity() {
         }
     }
 
+    // Get the days the user has selected for the pill intake
     private fun getDays(): String {
         var days = ""
         val daysRadioButtons = arrayOf(monRadioButton, tueRadioButton, wedRadioButton, thuRadioButton, friRadioButton, satRadioButton, sunRadioButton)
@@ -162,6 +168,7 @@ class EnterDetails : AppCompatActivity() {
         return days
     }
 
+    // Fill in input fields with current values of the pill
     private fun restoreValues(pillModel: PillModel) {
         nameEdit!!.setText(pillModel.name)
         brandEdit!!.setText(pillModel.brand)

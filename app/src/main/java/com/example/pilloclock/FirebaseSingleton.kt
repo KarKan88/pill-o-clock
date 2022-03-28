@@ -10,6 +10,7 @@ object FirebaseSingleton {
         auth = FirebaseAuth.getInstance()
     }
 
+    // Register the user using email and password
     fun SignUpUser(email: String, password: String): String {
         var result = ""
         auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener {
@@ -23,6 +24,7 @@ object FirebaseSingleton {
         return result
     }
 
+    // Validate user credentials and log them in
     fun LoginUser(email: String, password: String): String {
         var result = ""
         auth.signInWithEmailAndPassword(email, password).addOnCompleteListener {

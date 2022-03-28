@@ -67,6 +67,7 @@ class MedicationList : AppCompatActivity() {
         }
     }
 
+    // Custom adapter to display ListView items
     private class MedicationListAdapter(context: Context, pillList: List<Pill>, resources: Resources, packageName: String): BaseAdapter() {
         private val mContext: Context = context
         private val mPillList: List<Pill> = pillList
@@ -86,6 +87,8 @@ class MedicationList : AppCompatActivity() {
         }
 
         override fun getView(p0: Int, p1: View?, p2: ViewGroup?): View {
+            //Populate list view with items from the Pill list
+
             val layoutInflator = LayoutInflater.from(mContext)
             val med_list = layoutInflator.inflate(R.layout.medication_list_item, p2, false)
             val currItem = mPillList.get(p0)

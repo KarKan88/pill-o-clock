@@ -31,8 +31,10 @@ class EditDetails : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit_details)
+        // Get the position of the pill in the list
         val position = intent.getSerializableExtra("Position") as Int
 
+        // Init views
         iconImage = findViewById(R.id.iconImg)
         nameEdit = findViewById(R.id.medicationNameEdit)
         brandEdit = findViewById(R.id.brandNameEdit)
@@ -52,14 +54,17 @@ class EditDetails : AppCompatActivity() {
         pillCountEdit = findViewById(R.id.pillCountEdit)
         spinner = findViewById(R.id.spinner)
 
+        // set the icons list as the adapter
         val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, resources.getStringArray(R.array.Icons))
         spinner!!.adapter = adapter
 
+        // Get pill list from the database
         val pillDao = AppDatabase.getDatabase(this.application).pillDao()
         val pillList = pillDao.getAll()
 
         restoreValues(pillList[position])
 
+        // Delete the pill from the database
         val deleteButton = findViewById<Button>(R.id.deleteButton)
         deleteButton.setOnClickListener {
             pillDao.delete(pillList[position])
@@ -67,17 +72,22 @@ class EditDetails : AppCompatActivity() {
             startActivity(intent)
         }
 
+        // Save the changes to the pill
         val saveButton = findViewById<Button>(R.id.saveButton)
         saveButton.setOnClickListener {
             pillDao.insertAll(pillList[position])
+            val intent = Intent(this, MedicationList::class.java)
+            startActivity(intent)
         }
 
+        // Revert changes if any and go back to the previous page
         val cancelButton = findViewById<Button>(R.id.cancelButton)
         cancelButton.setOnClickListener {
             onBackPressed()
         }
     }
 
+    // Fill in input fields with current values of the pill
     private fun restoreValues(pill: Pill) {
         nameEdit!!.setText(pill.name)
         brandEdit!!.setText(pill.brand)

@@ -15,12 +15,15 @@ class ViewDetails : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_view_details)
 
+        // Get the position of the Pill in the Pill List
         val position = intent.getSerializableExtra("Position") as Int
         pillPos = position
 
+        // Fetch all pills from the database
         val pillDao = AppDatabase.getDatabase(this.application).pillDao()
         val pillList = pillDao.getAll()
 
+        // Init views
         val nameText = findViewById<TextView>(R.id.nameText)
         val brandText = findViewById<TextView>(R.id.brandText)
         val dosageText = findViewById<TextView>(R.id.dosageText)
@@ -32,6 +35,7 @@ class ViewDetails : AppCompatActivity() {
         val notesText = findViewById<TextView>(R.id.notesText)
         val icon = findViewById<ImageView>(R.id.iconImg)
 
+        // Get the pill that the user clicked on and fill in the details
         val currPill = pillList[pillPos!!]
         nameText.text = currPill.name
         brandText.text = currPill.brand
@@ -60,6 +64,7 @@ class ViewDetails : AppCompatActivity() {
             notesText.text = "No notes"
         }
         notesText.text = currPill.notes
+        // set the Pill icon
         val uri = """drawable/${currPill.icon}"""
         val imageResource = resources.getIdentifier(uri, null, packageName)
         val res = resources.getDrawable(imageResource, null)
