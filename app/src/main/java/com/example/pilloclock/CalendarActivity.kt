@@ -1,6 +1,9 @@
 package com.example.pilloclock
 
+<<<<<<< HEAD
 import android.content.Intent
+=======
+>>>>>>> cd78fad775d25d1d5e7f7d8b624e010f4f5917cf
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
@@ -11,7 +14,10 @@ import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+<<<<<<< HEAD
 import com.google.android.material.bottomnavigation.BottomNavigationView
+=======
+>>>>>>> cd78fad775d25d1d5e7f7d8b624e010f4f5917cf
 import java.time.LocalDate
 import java.time.YearMonth
 import java.time.format.DateTimeFormatter
@@ -29,6 +35,7 @@ class CalendarActivity : AppCompatActivity(), CalendarAdapter.OnItemListener {
         initWidgets()
         selectedDate = LocalDate.now()
         setMonthView()
+<<<<<<< HEAD
 
         // Bottom Navigation Bar
         var bottomNavigation = findViewById<BottomNavigationView>(R.id.bottom_nav)
@@ -59,6 +66,8 @@ class CalendarActivity : AppCompatActivity(), CalendarAdapter.OnItemListener {
             }
             true
         }
+=======
+>>>>>>> cd78fad775d25d1d5e7f7d8b624e010f4f5917cf
     }
 
     // Set or update the month view on calendar
@@ -66,6 +75,10 @@ class CalendarActivity : AppCompatActivity(), CalendarAdapter.OnItemListener {
     private fun setMonthView() {
         month?.setText(selectedDate?.let { getMonth(it) })
         var days : ArrayList<String>? = selectedDate?.let { getDays(it) }
+<<<<<<< HEAD
+=======
+
+>>>>>>> cd78fad775d25d1d5e7f7d8b624e010f4f5917cf
         var calendarAdapter : CalendarAdapter? = days?.let { CalendarAdapter(it, this) }
         var layoutManager: RecyclerView.LayoutManager = GridLayoutManager(applicationContext, 7)
         calendarRecyclerView?.layoutManager = layoutManager
