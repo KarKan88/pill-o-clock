@@ -21,8 +21,8 @@
         android:layout_alignParentBottom="true"
         android:visibility="visible"
         app:itemBackground="@color/purple_700"
-        app:itemIconTint="@drawable/selector"
-        app:itemTextColor="@drawable/selector"
+        app:itemIconTint="@color/white"
+        app:itemTextColor="@color/white"
         app:labelVisibilityMode="labeled"
         app:menu="@menu/bottom_nav" />
 

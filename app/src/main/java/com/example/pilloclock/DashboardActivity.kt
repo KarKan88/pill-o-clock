@@ -14,16 +14,27 @@ class DashboardActivity : AppCompatActivity() {
         // Initialize Variables
         var bottomNavigation = findViewById<BottomNavigationView>(R.id.bottom_nav)
 
+        // Bottom Navigation Bar
         // Set Selected
         bottomNavigation.setSelectedItemId(R.id.bottom_nav_item_home)
 
         // Perform Navigation to different activities
         bottomNavigation.setOnItemSelectedListener{
             when (it.itemId){
-                R.id.bottom_nav_item_home -> navigateToActitity(DashboardActivity::class.java)
-//                R.id.bottom_nav_item_calendar -> navigateToActitity(CalendarActivity::class.java)
-//                R.id.bottom_nav_item_medications -> navigateToActitity(MedicationActivity::class.java)
-//                R.id.bottom_nav_item_more -> navigateToActitity(MoreActivity::class.java)
+                R.id.bottom_nav_item_home -> {
+                    val intent = Intent(this, DashboardActivity::class.java)
+                    startActivity(intent);
+                }
+//                R.id.bottom_nav_item_calendar -> {
+//                    val intent = Intent(this, CalendarActivity::class.java)
+//                    startActivity(intent);
+                R.id.bottom_nav_item_medications -> {
+                    val intent = Intent(this, MedicationList::class.java)
+                    startActivity(intent);
+                }
+//                R.id.bottom_nav_item_more -> {
+//                    val intent = Intent(this, MoreActivity::class.java)
+//                   startActivity(intent);
             }
             true
         }
