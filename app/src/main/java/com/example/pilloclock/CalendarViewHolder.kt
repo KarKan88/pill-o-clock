@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView.ViewHolder
 class CalendarViewHolder : ViewHolder, View.OnClickListener{
     // Initalize variables
     var dayOfMonth: TextView? = null
+    var cellContainer: View? = null
     private var onItemListener : CalendarAdapter.OnItemListener
 
     // Constructor
@@ -15,6 +16,7 @@ class CalendarViewHolder : ViewHolder, View.OnClickListener{
         itemView: View,
         onItemListener: CalendarAdapter.OnItemListener
     ) : super(itemView) {
+        cellContainer = itemView.findViewById(R.id.cellContainer);
         dayOfMonth = itemView.findViewById(R.id.cellDay)
         this.onItemListener = onItemListener
         itemView.setOnClickListener(this)
@@ -22,6 +24,6 @@ class CalendarViewHolder : ViewHolder, View.OnClickListener{
 
     // Call onItemClick from Calendar Activity
     override fun onClick(view: View) {
-        onItemListener.onItemClick(adapterPosition, dayOfMonth.toString())
+        onItemListener.onItemClick(adapterPosition, dayOfMonth?.text.toString())
     }
 }

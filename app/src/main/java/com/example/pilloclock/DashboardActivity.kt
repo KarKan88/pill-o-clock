@@ -42,8 +42,4 @@ class DashboardActivity : AppCompatActivity() {
             true
         }
     }
-
-    private fun navigateToActitity(java: Type) {
-        TODO("Implement navigation")
-    }
 }
