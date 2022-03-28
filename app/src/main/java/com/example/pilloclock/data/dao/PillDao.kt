@@ -12,7 +12,7 @@ interface PillDao {
     @Update
     fun update(pill: Pill): Int
 
-    @Query("UPDATE pill SET isTaken = :isTaken WHERE id = :pillId")
+    @Query("UPDATE pill SET isTaken = :isTaken, pillsLeft = pillsLeft - 1 WHERE id = :pillId")
     fun updateIsTaken(pillId: Int, isTaken: Boolean): Int
 
     @Delete

@@ -24,7 +24,7 @@ class TaskListViewAdapter(private val context: Activity,
         taskCheckBox.text = tasks[position].taskName
         taskCheckBox.isChecked = tasks[position].isCompleted
         taskCheckBox.setOnCheckedChangeListener { compoundButton, b ->
-            pillRepos.updatePillTaken(tasks[position].pillId, b)
+            pillRepos.updatePillTakenAndCount(tasks[position].pillId, b)
         }
         return rowView
     }
