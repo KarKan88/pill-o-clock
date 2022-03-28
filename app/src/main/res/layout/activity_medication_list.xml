@@ -16,9 +16,13 @@
 
     <TextView
         android:id="@+id/headingText"
-        android:layout_width="107dp"
-        android:layout_height="48dp"
+        android:layout_width="251dp"
+        android:layout_height="55dp"
         android:text="Medication List"
+        android:textAlignment="center"
+        android:textColor="#000000"
+        android:textSize="24sp"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
