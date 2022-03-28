@@ -2,12 +2,8 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-<<<<<<< HEAD
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/cellContainer">
-=======
-    xmlns:app="http://schemas.android.com/apk/res-auto">
->>>>>>> cd78fad775d25d1d5e7f7d8b624e010f4f5917cf
 
     <!-- Cell for Calendar Day -->
     <TextView
