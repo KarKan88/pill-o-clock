@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.EditText
 import android.widget.ImageView
+import android.widget.ProgressBar
 import android.widget.TextView
 import com.example.example.FDAMedicationResponse
 import com.example.pilloclock.data.AppDatabase
@@ -66,6 +67,8 @@ class VerifyDetails : AppCompatActivity() {
     }
 
     fun clickSubmit(view: View) {
+        val loadingBar = findViewById<ProgressBar>(R.id.loadingBar)
+        loadingBar.visibility = ProgressBar.VISIBLE
         getPurpose { purpose ->
             if (purpose != null) {
                 pillModel!!.description = purpose
@@ -77,6 +80,7 @@ class VerifyDetails : AppCompatActivity() {
             val pillEntity = Pill(size+1, pillModel!!.name, pillModel!!.brand, pillModel!!.time, pillModel!!.days, pillModel!!.icon, pillModel!!.startDate, pillModel!!.endDate, pillModel!!.dosage, pillModel!!.pillsLeft, pillModel!!.refill, pillModel!!.addedDate, pillModel!!.description, pillModel!!.notes, pillModel!!.doctor)
             val pillRepository = PillRepository(pillDao)
             pillRepository.addPill(pillEntity)
+            loadingBar.visibility = ProgressBar.GONE
             val intent = Intent(this, MedicationList::class.java)
             startActivity(intent)
         }
