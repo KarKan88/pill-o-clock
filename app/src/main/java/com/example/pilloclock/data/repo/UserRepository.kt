@@ -10,6 +10,5 @@ class UserRepository (private val userDao: UserDao) {
 
     fun getUsers():List<User> = userDao.getAll()
 
-
-
+    fun getUser(email: String):User = userDao.get(email)
 }

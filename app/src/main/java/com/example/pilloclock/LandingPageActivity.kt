@@ -5,6 +5,13 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
+import com.example.example.FDAMedicationResponse
+import com.example.pilloclock.services.FDAMedicationService
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 
 
 class LandingPageActivity : AppCompatActivity() {
@@ -15,6 +22,8 @@ class LandingPageActivity : AppCompatActivity() {
         var loginButton = findViewById<Button>(R.id.login_button)
         var signUpButton = findViewById<Button>(R.id.sign_up_button)
         var skipButton = findViewById<Button>(R.id.skip_button)
+
+
 
         loginButton.setOnClickListener(
             object : View.OnClickListener {
