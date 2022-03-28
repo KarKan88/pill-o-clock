@@ -12,7 +12,7 @@ import com.example.pilloclock.data.entity.Notification
 import com.example.pilloclock.data.entity.Pill
 import com.example.pilloclock.data.entity.User
 
-@Database(entities = [User::class, Notification::class, Pill::class], version = 4, exportSchema = false)
+@Database(entities = [User::class, Notification::class, Pill::class], version = 5, exportSchema = false)
 abstract class AppDatabase: RoomDatabase() {
     abstract fun userDao(): UserDao
     abstract fun notificationDao(): NotificationDao

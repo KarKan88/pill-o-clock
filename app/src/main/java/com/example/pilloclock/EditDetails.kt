@@ -1,5 +1,6 @@
 package com.example.pilloclock
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -62,6 +63,8 @@ class EditDetails : AppCompatActivity() {
         val deleteButton = findViewById<Button>(R.id.deleteButton)
         deleteButton.setOnClickListener {
             pillDao.delete(pillList[position])
+            val intent = Intent(this, MedicationList::class.java)
+            startActivity(intent)
         }
 
         val saveButton = findViewById<Button>(R.id.saveButton)

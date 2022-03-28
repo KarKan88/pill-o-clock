@@ -28,6 +28,8 @@ class ViewDetails : AppCompatActivity() {
         val endDateText = findViewById<TextView>(R.id.endDateText)
         val refillText = findViewById<TextView>(R.id.refillText)
         val intakeText = findViewById<TextView>(R.id.intakeText)
+        val descriptionText = findViewById<TextView>(R.id.descriptionText)
+        val notesText = findViewById<TextView>(R.id.notesText)
         val icon = findViewById<ImageView>(R.id.iconImg)
 
         val currPill = pillList[pillPos!!]
@@ -44,6 +46,20 @@ class ViewDetails : AppCompatActivity() {
         refillText.text = currPill.refill.toString()
         val intake = """${currPill.days} at ${currPill.time}"""
         intakeText.text = intake
+        if(currPill.description != "") {
+            val description = currPill.description!!.split("Purpose ")
+            descriptionText.text = description[1]
+        }
+        else {
+            descriptionText.text = "No description"
+        }
+        if(currPill.notes != "") {
+            notesText.text = currPill.notes
+        }
+        else {
+            notesText.text = "No notes"
+        }
+        notesText.text = currPill.notes
         val uri = """drawable/${currPill.icon}"""
         val imageResource = resources.getIdentifier(uri, null, packageName)
         val res = resources.getDrawable(imageResource, null)

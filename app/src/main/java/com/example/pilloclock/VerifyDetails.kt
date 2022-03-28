@@ -7,10 +7,17 @@ import android.view.View
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
+import com.example.example.FDAMedicationResponse
 import com.example.pilloclock.data.AppDatabase
 import com.example.pilloclock.data.entity.Pill
 import com.example.pilloclock.data.repo.PillRepository
+import com.example.pilloclock.services.FDAMedicationService
 import java.util.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 
 class VerifyDetails : AppCompatActivity() {
     var pillModel: PillModel? = null
@@ -54,13 +61,52 @@ class VerifyDetails : AppCompatActivity() {
     }
 
     fun clickSubmit(view: View) {
-        val pillDao = AppDatabase.getDatabase(this.application).pillDao()
-        val size = pillDao.getAll().size
-        val pillEntity = Pill(size+1, pillModel!!.name, pillModel!!.brand, pillModel!!.time, pillModel!!.days, pillModel!!.icon, pillModel!!.startDate, pillModel!!.endDate, pillModel!!.dosage, pillModel!!.pillsLeft, pillModel!!.refill, pillModel!!.addedDate, pillModel!!.description, pillModel!!.notes, pillModel!!.doctor)
-        val pillRepository = PillRepository(pillDao)
-        pillRepository.addPill(pillEntity)
+        getPurpose { purpose ->
+            if (purpose != null) {
+                pillModel!!.description = purpose
+            } else {
+                System.err.println("null")
+            }
+            val pillDao = AppDatabase.getDatabase(this.application).pillDao()
+            val size = pillDao.getAll().size
+            val pillEntity = Pill(size+1, pillModel!!.name, pillModel!!.brand, pillModel!!.time, pillModel!!.days, pillModel!!.icon, pillModel!!.startDate, pillModel!!.endDate, pillModel!!.dosage, pillModel!!.pillsLeft, pillModel!!.refill, pillModel!!.addedDate, pillModel!!.description, pillModel!!.notes, pillModel!!.doctor)
+            val pillRepository = PillRepository(pillDao)
+            pillRepository.addPill(pillEntity)
+            val intent = Intent(this, MedicationList::class.java)
+            startActivity(intent)
+        }
+    }
 
-        val intent = Intent(this, MedicationList::class.java)
-        startActivity(intent)
+    fun getPurpose(callback: (String?) -> Unit) {
+        val BASE_URL = "https://api.fda.gov/"
+
+        val retrofit = Retrofit.Builder()
+            .baseUrl(BASE_URL)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+
+        val service = retrofit.create(FDAMedicationService::class.java)
+        val call = service.getMedicationDetails("5", pillModel!!.name)
+
+        call.enqueue(object : Callback<FDAMedicationResponse> {
+            override fun onResponse(call: Call<FDAMedicationResponse>, response: Response<FDAMedicationResponse>) {
+                if (response.code() == 200) {
+                    val fdaMedicationResponse = response.body()!!
+                    val purpose = fdaMedicationResponse.results[0].purpose
+                    var purposeText = ""
+                    for(x in purpose) {
+                        if(x != "Purpose") {
+                            purposeText += x
+                        }
+                    }
+                    callback(purposeText)
+                }
+            }
+
+            override fun onFailure(call: Call<FDAMedicationResponse>, t: Throwable) {
+                //TODO failure
+                callback(null)
+            }
+        })
     }
 }

@@ -104,8 +104,8 @@
             android:id="@+id/startDateHeading"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="48dp"
+            android:layout_marginStart="36dp"
+            android:layout_marginTop="68dp"
             android:text="Start Date"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@id/dosageText" />
@@ -114,7 +114,7 @@
             android:id="@+id/startDateText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
+            android:layout_marginStart="36dp"
             android:layout_marginTop="28dp"
             android:text="10/10/10"
             android:textSize="20sp"
@@ -126,9 +126,9 @@
             android:id="@+id/endDateHeading"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
+            android:layout_marginStart="36dp"
             android:layout_marginTop="48dp"
-            android:text="EndDate"
+            android:text="End Date/ Pill Count"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@id/startDateText" />
 
@@ -136,7 +136,7 @@
             android:id="@+id/endDateText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
+            android:layout_marginStart="36dp"
             android:layout_marginTop="28dp"
             android:text="11/11/11"
             android:textSize="20sp"
@@ -148,45 +148,89 @@
             android:id="@+id/refillHeading"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="60dp"
+            android:layout_marginStart="36dp"
+            android:layout_marginTop="24dp"
             android:text="Refill"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@id/endDateText" />
+            app:layout_constraintTop_toBottomOf="@id/endDateText" />
 
         <TextView
             android:id="@+id/refillText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="24dp"
+            android:layout_marginStart="36dp"
+            android:layout_marginTop="12dp"
             android:text="True"
             android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@id/refillHeading" />
+            app:layout_constraintTop_toBottomOf="@id/refillHeading" />
 
         <TextView
             android:id="@+id/intakeHeading"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="44dp"
+            android:layout_marginStart="36dp"
+            android:layout_marginTop="24dp"
             android:text="Intake Time and Date"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@id/refillText" />
+            app:layout_constraintTop_toBottomOf="@id/refillText" />
 
         <TextView
             android:id="@+id/intakeText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="32dp"
+            android:layout_marginStart="36dp"
+            android:layout_marginTop="8dp"
             android:text="Mondays at 10AM"
             android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@id/intakeHeading" />
+            app:layout_constraintTop_toBottomOf="@id/intakeHeading" />
+
+        <TextView
+            android:id="@+id/descriptionHeading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="36dp"
+            android:layout_marginTop="16dp"
+            android:text="Description"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/intakeText" />
+
+        <TextView
+            android:id="@+id/descriptionText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="36dp"
+            android:layout_marginTop="28dp"
+            android:text="Description"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/descriptionHeading" />
+
+        <TextView
+            android:id="@+id/notesHeading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="36dp"
+            android:layout_marginTop="36dp"
+            android:text="Notes"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/descriptionText" />
+
+        <TextView
+            android:id="@+id/notesText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="36dp"
+            android:layout_marginTop="8dp"
+            android:text="Notes"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/notesHeading" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/editButton"

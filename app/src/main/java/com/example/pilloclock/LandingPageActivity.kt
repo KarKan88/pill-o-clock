@@ -46,29 +46,6 @@ class LandingPageActivity : AppCompatActivity() {
         skipButton.setOnClickListener(
             object : View.OnClickListener {
                 override fun onClick(v: View?) {
-                    val BASE_URL = "https://api.fda.gov/"
-
-                    val retrofit = Retrofit.Builder()
-                        .baseUrl(BASE_URL)
-                        .addConverterFactory(GsonConverterFactory.create())
-                        .build()
-
-                    val service = retrofit.create(FDAMedicationService::class.java)
-                    val call = service.getMedicationDetails("5", "Advil")
-
-                    call.enqueue(object : Callback<FDAMedicationResponse> {
-                        override fun onResponse(call: Call<FDAMedicationResponse>, response: Response<FDAMedicationResponse>) {
-                            if (response.code() == 200) {
-                                val fdaMedicationResponse = response.body()!!
-                                System.err.println(fdaMedicationResponse)
-                            }
-                        }
-
-                        override fun onFailure(call: Call<FDAMedicationResponse>, t: Throwable) {
-                            //TODO failure
-                        }
-                    })
-
                     val intent = Intent(this@LandingPageActivity, DashboardActivity::class.java)
                     startActivity(intent);
                 }
