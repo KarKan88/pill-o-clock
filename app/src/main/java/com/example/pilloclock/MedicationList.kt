@@ -52,9 +52,12 @@ class MedicationList : AppCompatActivity() {
                     val intent = Intent(this, DashboardActivity::class.java)
                     startActivity(intent);
                 }
-//                R.id.bottom_nav_item_calendar -> {
-//                    val intent = Intent(this, CalendarActivity::class.java)
-//                    startActivity(intent);
+
+                R.id.bottom_nav_item_calendar -> {
+                    val intent = Intent(this, CalendarActivity::class.java)
+                    startActivity(intent);
+                }
+
                 R.id.bottom_nav_item_medications -> {
                     val intent = Intent(this, MedicationList::class.java)
                     startActivity(intent);

@@ -1,5 +1,6 @@
 package com.example.pilloclock
 
+import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
@@ -10,6 +11,7 @@ import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import java.time.LocalDate
 import java.time.YearMonth
 import java.time.format.DateTimeFormatter
@@ -27,6 +29,36 @@ class CalendarActivity : AppCompatActivity(), CalendarAdapter.OnItemListener {
         initWidgets()
         selectedDate = LocalDate.now()
         setMonthView()
+
+        // Bottom Navigation Bar
+        var bottomNavigation = findViewById<BottomNavigationView>(R.id.bottom_nav)
+
+        // Set Selected
+        bottomNavigation.setSelectedItemId(R.id.bottom_nav_item_calendar)
+
+        // Perform Navigation to different activities
+        bottomNavigation.setOnItemSelectedListener{
+            when (it.itemId){
+                R.id.bottom_nav_item_home -> {
+                    val intent = Intent(this, DashboardActivity::class.java)
+                    startActivity(intent);
+                }
+
+                R.id.bottom_nav_item_calendar -> {
+                    val intent = Intent(this, CalendarActivity::class.java)
+                    startActivity(intent);
+                }
+
+                R.id.bottom_nav_item_medications -> {
+                    val intent = Intent(this, MedicationList::class.java)
+                    startActivity(intent);
+                }
+//                R.id.bottom_nav_item_more -> {
+//                    val intent = Intent(this, MoreActivity::class.java)
+//                   startActivity(intent);
+            }
+            true
+        }
     }
 
     // Set or update the month view on calendar
@@ -34,7 +66,6 @@ class CalendarActivity : AppCompatActivity(), CalendarAdapter.OnItemListener {
     private fun setMonthView() {
         month?.setText(selectedDate?.let { getMonth(it) })
         var days : ArrayList<String>? = selectedDate?.let { getDays(it) }
-
         var calendarAdapter : CalendarAdapter? = days?.let { CalendarAdapter(it, this) }
         var layoutManager: RecyclerView.LayoutManager = GridLayoutManager(applicationContext, 7)
         calendarRecyclerView?.layoutManager = layoutManager
