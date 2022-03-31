@@ -21,5 +21,6 @@ data class Pill(
     val addedDate: String?,
     val description: String?,
     val notes: String?,
-    val doctor: String?
+    val doctor: String?,
+    val isTaken: Boolean?,
 )

@@ -1,10 +1,15 @@
 package com.example.pilloclock
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.ListView
+import androidx.appcompat.app.AppCompatActivity
+import com.example.pilloclock.adapter.TaskListViewAdapter
+import com.example.pilloclock.services.TaskService
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import java.lang.reflect.Type
+import java.text.SimpleDateFormat
+import java.util.*
 
 class DashboardActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,6 +43,16 @@ class DashboardActivity : AppCompatActivity() {
             }
             true
         }
+
+        val taskService = TaskService(this.applicationContext)
+        val cal: Calendar = Calendar.getInstance()
+        cal.add(Calendar.DATE, 1)
+        val format1 = SimpleDateFormat("dd-MM-yyyy")
+        val formatted: String = format1.format(cal.time)
+
+        val listView = findViewById<ListView>(R.id.taskView)
+        val myListAdapter = TaskListViewAdapter(this,taskService.getTaskList(formatted))
+        listView.adapter = myListAdapter
     }
 
     private fun navigateToActitity(java: Type) {
