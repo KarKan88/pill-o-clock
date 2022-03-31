@@ -1,17 +1,22 @@
 package com.example.pilloclock
 
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.widget.ListView
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import com.example.pilloclock.adapter.TaskListViewAdapter
 import com.example.pilloclock.services.TaskService
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import java.lang.reflect.Type
 import java.text.SimpleDateFormat
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 import java.util.*
 
 class DashboardActivity : AppCompatActivity() {
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_dashboard)
@@ -48,13 +53,12 @@ class DashboardActivity : AppCompatActivity() {
         }
 
         val taskService = TaskService(this.applicationContext)
-        val cal: Calendar = Calendar.getInstance()
-        cal.add(Calendar.DATE, 1)
-        val format1 = SimpleDateFormat("dd-MM-yyyy")
-        val formatted: String = format1.format(cal.time)
+        val today = LocalDate.now()
+        val todayFormatted = today.format(
+            DateTimeFormatter.ofPattern("dd-MM-yyyy")).toString()
 
         val listView = findViewById<ListView>(R.id.taskView)
-        val myListAdapter = TaskListViewAdapter(this,taskService.getTaskList(formatted))
+        val myListAdapter = TaskListViewAdapter(this,taskService.getTaskList(todayFormatted))
         listView.adapter = myListAdapter
     }
 }

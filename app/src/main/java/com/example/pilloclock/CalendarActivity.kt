@@ -150,7 +150,7 @@ class CalendarActivity : AppCompatActivity(), CalendarAdapter.OnItemListener {
         if(!day.equals("")){
             var dayInt = Integer.parseInt(day)
             var monthInt = selectedDate?.monthValue
-            var select : LocalDate? = monthInt?.let { LocalDate.of(2021, it, dayInt) }
+            var select : LocalDate? = monthInt?.let { LocalDate.of(2022, it, dayInt) }
 
             // If user selected a valid date, update screen to show the cursor date details
             if (select != null) {
