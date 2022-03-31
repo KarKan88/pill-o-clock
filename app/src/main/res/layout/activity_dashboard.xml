@@ -24,6 +24,7 @@
             android:layout_height="wrap_content"
             app:menu="@menu/menu_notification"
             app:navigationIcon="@drawable/ic_user_icon"
+            android:onClick="clickUserIcon"
             app:title="Home" />
 
     </com.google.android.material.appbar.AppBarLayout>

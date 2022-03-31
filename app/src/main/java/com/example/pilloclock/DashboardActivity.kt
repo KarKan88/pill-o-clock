@@ -2,10 +2,12 @@ package com.example.pilloclock
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.ListView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.pilloclock.adapter.TaskListViewAdapter
 import com.example.pilloclock.services.TaskService
+import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import java.lang.reflect.Type
 import java.text.SimpleDateFormat
@@ -18,6 +20,7 @@ class DashboardActivity : AppCompatActivity() {
 
         // Initialize Variables
         var bottomNavigation = findViewById<BottomNavigationView>(R.id.bottom_nav)
+        var topDashboard = findViewById<MaterialToolbar>(R.id.topAppBarDashboard)
 
         // Bottom Navigation Bar
         // Set Selected
@@ -44,6 +47,8 @@ class DashboardActivity : AppCompatActivity() {
             true
         }
 
+
+
         val taskService = TaskService(this.applicationContext)
         val cal: Calendar = Calendar.getInstance()
         cal.add(Calendar.DATE, 1)
@@ -57,5 +62,10 @@ class DashboardActivity : AppCompatActivity() {
 
     private fun navigateToActitity(java: Type) {
         TODO("Implement navigation")
+    }
+
+    fun clickUserIcon(view: View) {
+        val intent = Intent(this, EditUserProfile::class.java)
+        startActivity(intent)
     }
 }
