@@ -3,11 +3,13 @@ package com.example.pilloclock
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
+import android.view.View
 import android.widget.ListView
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import com.example.pilloclock.adapter.TaskListViewAdapter
 import com.example.pilloclock.services.TaskService
+import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import java.lang.reflect.Type
 import java.text.SimpleDateFormat
@@ -23,6 +25,7 @@ class DashboardActivity : AppCompatActivity() {
 
         // Initialize Variables
         var bottomNavigation = findViewById<BottomNavigationView>(R.id.bottom_nav)
+        var topDashboard = findViewById<MaterialToolbar>(R.id.topAppBarDashboard)
 
         // Bottom Navigation Bar
         // Set Selected
@@ -52,6 +55,8 @@ class DashboardActivity : AppCompatActivity() {
             true
         }
 
+
+
         val taskService = TaskService(this.applicationContext)
         val today = LocalDate.now()
         val todayFormatted = today.format(
@@ -60,5 +65,13 @@ class DashboardActivity : AppCompatActivity() {
         val listView = findViewById<ListView>(R.id.taskView)
         val myListAdapter = TaskListViewAdapter(this,taskService.getTaskList(todayFormatted))
         listView.adapter = myListAdapter
+    }
+    private fun navigateToActitity(java: Type) {
+        TODO("Implement navigation")
+    }
+
+    fun clickUserIcon(view: View) {
+        val intent = Intent(this, EditUserProfile::class.java)
+        startActivity(intent)
     }
 }
