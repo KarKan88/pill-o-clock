@@ -121,6 +121,7 @@
             android:textSize="16dp" />
 
         <ListView
+            android:id="@+id/current_medication_list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 

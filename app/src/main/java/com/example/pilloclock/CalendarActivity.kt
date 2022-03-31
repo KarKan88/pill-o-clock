@@ -5,6 +5,7 @@ import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.ListView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.RequiresApi
@@ -15,6 +16,9 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import java.time.LocalDate
 import java.time.YearMonth
 import java.time.format.DateTimeFormatter
+import com.example.pilloclock.adapter.TaskListViewAdapter
+import com.example.pilloclock.services.TaskService
+import java.sql.Date
 
 class CalendarActivity : AppCompatActivity(), CalendarAdapter.OnItemListener {
     // Initialize Variables
@@ -23,8 +27,9 @@ class CalendarActivity : AppCompatActivity(), CalendarAdapter.OnItemListener {
 
     companion object {
         var selectedDate: LocalDate? = null
+        var selectedDateFormatted: String = ""
         @RequiresApi(Build.VERSION_CODES.O)
-        var cursor: LocalDate = LocalDate.now();
+        var cursor: LocalDate = LocalDate.now()
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
@@ -40,6 +45,13 @@ class CalendarActivity : AppCompatActivity(), CalendarAdapter.OnItemListener {
         // Change the date above list view to be current date
         var currentDate = findViewById<TextView>(R.id.current_date);
         currentDate.text = selectedDate?.month.toString() + " " + selectedDate?.dayOfMonth.toString()
+
+        // Change the Listview of medication to match current date
+        val taskService = TaskService(this.applicationContext)
+        selectedDateFormatted = selectedDate?.format(DateTimeFormatter.ofPattern("dd-MM-yyyy")).toString()
+        val currentMedicationList = findViewById<ListView>(R.id.current_medication_list)
+        val currentMedicationListAdapter = TaskListViewAdapter(this, taskService.getTaskList(selectedDateFormatted))
+        currentMedicationList.adapter = currentMedicationListAdapter
 
         // Bottom Navigation Bar
         var bottomNavigation = findViewById<BottomNavigationView>(R.id.bottom_nav)
@@ -140,12 +152,23 @@ class CalendarActivity : AppCompatActivity(), CalendarAdapter.OnItemListener {
             var monthInt = selectedDate?.monthValue
             var select : LocalDate? = monthInt?.let { LocalDate.of(2021, it, dayInt) }
 
-            // If user selected a valid date, update month view and update list view title
+            // If user selected a valid date, update screen to show the cursor date details
             if (select != null) {
+                // Reset calendar view ith cursor date
                 cursor = select
+                selectedDateFormatted = cursor?.format(DateTimeFormatter.ofPattern("dd-MM-yyyy")).toString()
                 setMonthView()
+
+                // Update Listview title
                 var currentDate = findViewById<TextView>(R.id.current_date);
                 currentDate.text = cursor?.month.toString() + " " + cursor?.dayOfMonth.toString()
+
+                // Update Listview
+                val taskService = TaskService(this.applicationContext)
+                selectedDateFormatted =  cursor?.format(DateTimeFormatter.ofPattern("dd-MM-yyyy")).toString()
+                val currentMedicationList = findViewById<ListView>(R.id.current_medication_list)
+                val currentMedicationListAdapter = TaskListViewAdapter(this, taskService.getTaskList(selectedDateFormatted))
+                currentMedicationList.adapter = currentMedicationListAdapter
             }
         }
     }
