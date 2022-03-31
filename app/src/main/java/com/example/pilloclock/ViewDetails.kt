@@ -52,7 +52,7 @@ class ViewDetails : AppCompatActivity() {
         intakeText.text = intake
         if(currPill.description != "") {
             val description = currPill.description!!.split("Purpose ")
-            descriptionText.text = description[1]
+            descriptionText.text = description[0]
         }
         else {
             descriptionText.text = "No description"
