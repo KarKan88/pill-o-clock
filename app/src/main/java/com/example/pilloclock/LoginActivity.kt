@@ -39,8 +39,9 @@ class LoginActivity : AppCompatActivity() {
         }
         mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener { task ->
             if (task.isSuccessful){
+                val firebaseUserId = mAuth.currentUser!!.uid
                 //change activity from MainActivity to DashboardActivity
-                val intent = Intent(this@LoginActivity, MainActivity::class.java)
+                val intent = Intent(this@LoginActivity, DashboardActivity::class.java)
                 //not forcing login if user presses back button
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
                 // send to Dashboard
