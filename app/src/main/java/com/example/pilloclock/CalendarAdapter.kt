@@ -34,8 +34,8 @@ class CalendarAdapter : RecyclerView.Adapter<CalendarViewHolder> {
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onBindViewHolder(holder: CalendarViewHolder, position: Int) {
         holder.dayOfMonth?.setText(monthDays.get(position))
-        var dayMatch = holder.dayOfMonth?.text?.toString().equals(CalendarActivity.cusor.dayOfMonth.toString())
-        var monthMatch = CalendarActivity.selectedDate?.month?.equals(CalendarActivity.cusor.month)
+        var dayMatch = holder.dayOfMonth?.text?.toString().equals(CalendarActivity.cursor.dayOfMonth.toString())
+        var monthMatch = CalendarActivity.selectedDate?.month?.equals(CalendarActivity.cursor.month)
         if(dayMatch == true && monthMatch == true){
             holder.cellContainer?.setBackgroundColor(Color.LTGRAY)
         }

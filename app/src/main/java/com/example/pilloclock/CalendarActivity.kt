@@ -24,16 +24,22 @@ class CalendarActivity : AppCompatActivity(), CalendarAdapter.OnItemListener {
     companion object {
         var selectedDate: LocalDate? = null
         @RequiresApi(Build.VERSION_CODES.O)
-        var cusor: LocalDate = LocalDate.now();
+        var cursor: LocalDate = LocalDate.now();
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_calendar)
+
+        // Calendar start-up functions
         initWidgets()
         selectedDate = LocalDate.now()
         setMonthView()
+
+        // Change the date above list view to be current date
+        var currentDate = findViewById<TextView>(R.id.current_date);
+        currentDate.text = selectedDate?.month.toString() + " " + selectedDate?.dayOfMonth.toString()
 
         // Bottom Navigation Bar
         var bottomNavigation = findViewById<BottomNavigationView>(R.id.bottom_nav)
@@ -134,9 +140,12 @@ class CalendarActivity : AppCompatActivity(), CalendarAdapter.OnItemListener {
             var monthInt = selectedDate?.monthValue
             var select : LocalDate? = monthInt?.let { LocalDate.of(2021, it, dayInt) }
 
+            // If user selected a valid date, update month view and update list view title
             if (select != null) {
-                cusor = select
+                cursor = select
                 setMonthView()
+                var currentDate = findViewById<TextView>(R.id.current_date);
+                currentDate.text = cursor?.month.toString() + " " + cursor?.dayOfMonth.toString()
             }
         }
     }
