@@ -102,8 +102,8 @@ class MedicationList : AppCompatActivity() {
             val brandTextView = med_list.findViewById<TextView>(R.id.medBrandText)
             brandTextView.text = currItem.brand
 
-            val datesTextView = med_list.findViewById<TextView>(R.id.datesText)
-            datesTextView.text = "${currItem.startDate} - ${currItem.endDate}"
+            val dosageTextView = med_list.findViewById<TextView>(R.id.dosageText)
+            dosageTextView.text = "${currItem.dosage} mg"
 
             val uri = """drawable/${currItem.icon}"""
             val imageResource = mResources.getIdentifier(uri, null, mPackageName)

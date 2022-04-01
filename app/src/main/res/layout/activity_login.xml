@@ -7,47 +7,52 @@
         android:layout_height="match_parent"
         tools:context=".LoginActivity">
 
-    <TextView
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_centerInParent="true">
+
+        <TextView
             android:id="@+id/headlineSignUp"
+            android:layout_width="310dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:text="Let's get started!"
+            android:textAllCaps="true"
             android:textSize="20dp"
             android:textStyle="bold"
-            android:textAllCaps="true"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="110dp"
-            android:layout_marginEnd="90dp"
-            android:layout_marginTop="240dp"
-            android:layout_gravity="center"/>
-    <EditText
+            android:layout_marginBottom="20dp" />
+
+        <EditText
             android:id="@+id/email_login"
-            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:inputType="textPersonName"
             android:hint="Email"
             android:ems="10"
-            android:layout_below="@id/headlineSignUp"
-            android:layout_marginTop="72dp"
-            android:layout_marginStart="100dp"
-            android:layout_gravity="center"/>
-    <EditText
+            android:layout_width="310dp"
+            android:layout_gravity="center"
+            android:layout_marginBottom="20dp"/>
+
+        <EditText
             android:id="@+id/password_login"
-            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:inputType="textPassword"
             android:hint="Password"
             android:ems="10"
             android:layout_below="@id/email_login"
-            android:layout_marginTop="20dp"
-            android:layout_marginStart="100dp"
-            android:layout_gravity="center"/>
-    <Button
+            android:layout_width="310dp"
+            android:layout_gravity="center"
+            android:layout_marginBottom="40dp"/>
+
+        <Button
             android:id="@+id/btnLogin"
             android:text="Login"
-            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/password_login"
-            android:layout_marginTop="72dp"
-            android:layout_marginStart="166dp"
-            android:layout_gravity="center"/>
+            android:layout_width="310dp"
+            android:layout_gravity="center"
+            />
+
+    </LinearLayout>
+
 </RelativeLayout>
