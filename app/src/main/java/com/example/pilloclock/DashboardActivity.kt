@@ -36,6 +36,10 @@ class DashboardActivity : AppCompatActivity() {
                 .add(R.id.container, NotificationFragment.newInstance(1))
                 .commitNow()
         }
+        toolbarDashboard.findViewById<View>(R.id.profileIcon).setOnClickListener {
+            val intent = Intent(this, EditUserProfile::class.java)
+            startActivity(intent)
+        }
 
         // Perform Navigation to different activities
         bottomNavigation.setOnItemSelectedListener{
@@ -77,8 +81,4 @@ class DashboardActivity : AppCompatActivity() {
         TODO("Implement navigation")
     }
 
-    fun clickUserIcon(view: View) {
-        val intent = Intent(this, EditUserProfile::class.java)
-        startActivity(intent)
-    }
 }

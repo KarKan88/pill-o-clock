@@ -8,4 +8,9 @@
         android:title="notification icon"
         app:showAsAction="always"/>
 
+    <item
+        android:id="@+id/profileIcon"
+        android:icon="@drawable/ic_user_icon"
+        android:title="profile icon"
+        app:showAsAction="always"/>
 </menu>

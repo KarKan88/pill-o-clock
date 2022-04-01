@@ -26,19 +26,19 @@ class LandingPageActivity : AppCompatActivity() {
 
         createNotificationChannel()
 
-        val btnLogInClick = findViewById<Button>(R.id.login)
+        val btnLogInClick = findViewById<Button>(R.id.login_button)
         btnLogInClick.setOnClickListener {
             val intent = Intent(this, LoginActivity::class.java)
             // start LoginActivity
             startActivity(intent)
         }
-        val btnSignUpClick = findViewById<Button>(R.id.signup)
+        val btnSignUpClick = findViewById<Button>(R.id.sign_up_button)
         btnSignUpClick.setOnClickListener {
             val intent = Intent(this, SignUpActivity::class.java)
             // start SignUpActivity
             startActivity(intent)
         }
-        val btnSkip = findViewById<Button>(R.id.skip)
+        val btnSkip = findViewById<Button>(R.id.skip_button)
         btnSkip.setOnClickListener {
             val intent = Intent(this, DashboardActivity::class.java)
             // skips to dashboard

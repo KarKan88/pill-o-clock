@@ -63,7 +63,7 @@ class SignUpActivity : AppCompatActivity() {
                 refUsers.updateChildren(userHashMap).addOnCompleteListener { task ->
                     if (task.isSuccessful) {
                         //Toast.makeText(this, "Account created!", Toast.LENGTH_SHORT).show()
-                        val intent = Intent(this@SignUpActivity, MainActivity::class.java)
+                        val intent = Intent(this@SignUpActivity, LandingPageActivity::class.java)
                         //not forcing login if user presses back button
                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
                         // send to MainActivity page
