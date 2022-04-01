@@ -14,7 +14,7 @@
         android:id="@+id/toolbarDashboard"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/purple_500"
+        android:background="@color/blue_medium"
         android:minHeight="?attr/actionBarSize"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -33,23 +33,32 @@
             app:title="Home" />
 
     </com.google.android.material.appbar.AppBarLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_marginTop="?actionBarSize">
 
         <ImageView
-            android:id="@+id/iconImg"
-            android:layout_width="match_parent"
-            android:layout_height="300dp"
-            tools:srcCompat="@tools:sample/avatars"
-            />
+            android:layout_width="wrap_content"
+            android:layout_height="310dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:src="@drawable/sample_graph" />
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="You've taken your medication for 30 days in a row!\nKeep up the good work."
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginBottom="20dp" />
         <ListView
             android:id="@+id/taskView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="1dp" />
+            android:layout_marginBottom="?actionBarSize">
+        </ListView>
     </LinearLayout>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
@@ -58,7 +67,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:visibility="visible"
-        app:itemBackground="@color/purple_700"
+        app:itemBackground="@color/blue_medium"
         app:itemIconTint="@color/white"
         app:itemTextColor="@color/white"
         app:labelVisibilityMode="labeled"
