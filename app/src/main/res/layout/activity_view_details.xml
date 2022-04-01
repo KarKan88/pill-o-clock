@@ -230,5 +230,6 @@
         android:clickable="true"
         android:contentDescription="Edit"
         android:onClick="clickEditButton"
+        app:fabCustomSize="57dp"
         app:srcCompat="@android:drawable/ic_menu_edit" />
 </RelativeLayout>
