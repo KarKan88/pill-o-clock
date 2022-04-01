@@ -7,9 +7,10 @@ import java.sql.Timestamp
 
 @Entity
 data class Notification(
-    @PrimaryKey
-    val id: String,
-    val text: String?,
-    val status: NotificationStatus?,
-    val timestamp: String?,
-)
+    @PrimaryKey(autoGenerate = true)
+    var id: Int = 0,
+    var text: String?,
+    var status: NotificationStatus?,
+    var timestamp: String?,
+) {
+}

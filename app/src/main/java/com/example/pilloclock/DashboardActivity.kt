@@ -8,14 +8,14 @@ import android.widget.ListView
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import com.example.pilloclock.adapter.TaskListViewAdapter
+import com.example.pilloclock.fragments.NotificationFragment
 import com.example.pilloclock.services.TaskService
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import kotlinx.android.synthetic.main.activity_dashboard.*
 import java.lang.reflect.Type
-import java.text.SimpleDateFormat
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
-import java.util.*
 
 class DashboardActivity : AppCompatActivity() {
     @RequiresApi(Build.VERSION_CODES.O)
@@ -30,6 +30,12 @@ class DashboardActivity : AppCompatActivity() {
         // Bottom Navigation Bar
         // Set Selected
         bottomNavigation.setSelectedItemId(R.id.bottom_nav_item_home)
+
+        toolbarDashboard.findViewById<View>(R.id.notificationIcon).setOnClickListener {
+            supportFragmentManager.beginTransaction()
+                .add(R.id.container, NotificationFragment.newInstance(1))
+                .commitNow()
+        }
 
         // Perform Navigation to different activities
         bottomNavigation.setOnItemSelectedListener{
