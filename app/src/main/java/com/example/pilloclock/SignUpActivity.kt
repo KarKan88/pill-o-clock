@@ -2,10 +2,12 @@ package com.example.pilloclock
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
 import com.google.firebase.auth.FirebaseAuthUserCollisionException
@@ -45,32 +47,47 @@ class SignUpActivity : AppCompatActivity() {
         if (email.isBlank()) {
             Toast.makeText(this@SignUpActivity, "Email cannot be blank.", Toast.LENGTH_SHORT).show()
         } else if (password.isBlank()) {
-            Toast.makeText(this@SignUpActivity, "Password cannot be blank", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this@SignUpActivity, "Password cannot be blank", Toast.LENGTH_SHORT)
+                .show()
         } else {
             mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener { task ->
-                if (task.isSuccessful)
+                if (task.isSuccessful) {
                     firebaseUserId = mAuth.currentUser!!.uid
-                refUsers = FirebaseDatabase.getInstance().reference.child("User").child(firebaseUserId)
-                val userHashMap = HashMap<String, Any>()
-                userHashMap["uid"] = firebaseUserId
-                userHashMap["email"] = email
-                userHashMap["password"] = password
-                userHashMap["firstname"] = firstname
-                userHashMap["lastname"] = lastname
-                userHashMap["gender"] = gender
-                userHashMap["age"] = age
+                    refUsers =
+                        FirebaseDatabase.getInstance().reference.child("User").child(firebaseUserId)
+                    val userHashMap = HashMap<String, Any>()
+                    userHashMap["uid"] = firebaseUserId
+                    userHashMap["email"] = email
+                    userHashMap["password"] = password
+                    userHashMap["firstname"] = firstname
+                    userHashMap["lastname"] = lastname
+                    userHashMap["gender"] = gender
+                    userHashMap["age"] = age
 
-                refUsers.updateChildren(userHashMap).addOnCompleteListener { task ->
-                    if (task.isSuccessful) {
-                        //Toast.makeText(this, "Account created!", Toast.LENGTH_SHORT).show()
-                        val intent = Intent(this@SignUpActivity, LandingPageActivity::class.java)
-                        //not forcing login if user presses back button
-                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
-                        // send to MainActivity page
-                        startActivity(intent)
-                    } else {
-                        Toast.makeText(this@SignUpActivity, task.exception!!.message.toString(), Toast.LENGTH_SHORT).show()
+                    refUsers.updateChildren(userHashMap).addOnCompleteListener { task ->
+                        if (task.isSuccessful) {
+                            //Toast.makeText(this, "Account created!", Toast.LENGTH_SHORT).show()
+                            val intent =
+                                Intent(this@SignUpActivity, LandingPageActivity::class.java)
+                            //not forcing login if user presses back button
+                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
+                            // send to MainActivity page
+                            startActivity(intent)
+                        }
+                        else {
+                            var snackbar = Snackbar.make(currentFocus!!, task.exception!!.message.toString(), Snackbar.LENGTH_LONG)
+                            snackbar.show()
+                            //Toast.makeText( this@SignUpActivity, task.exception!!.message.toString(), Toast.LENGTH_SHORT ).show()
+                        }
                     }
+                }
+                else{
+                    var snackbar = Snackbar.make(currentFocus!!, task.exception!!.message.toString(), Snackbar.LENGTH_INDEFINITE).setAction("Log In?",
+                        View.OnClickListener {
+                            val intent = Intent(this@SignUpActivity, LoginActivity::class.java)
+                            startActivity(intent)
+                        })
+                    snackbar.show()
                 }
             }
         }

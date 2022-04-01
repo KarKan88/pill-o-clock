@@ -2,10 +2,12 @@ package com.example.pilloclock
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
@@ -49,7 +51,13 @@ class LoginActivity : AppCompatActivity() {
                 startActivity(intent)
             }
             else {
-                Toast.makeText(this@LoginActivity, task.exception!!.message.toString(), Toast.LENGTH_SHORT).show()
+                var snackbar = Snackbar.make(currentFocus!!, task.exception!!.message.toString(), Snackbar.LENGTH_INDEFINITE).setAction("Sign up?",
+                    View.OnClickListener {
+                        val intent = Intent(this@LoginActivity, SignUpActivity::class.java)
+                        startActivity(intent)
+                })
+                snackbar.show()
+                //Toast.makeText(this@LoginActivity, task.exception!!.message.toString(), Toast.LENGTH_SHORT).show()
             }
         }
     }
