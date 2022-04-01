@@ -3,7 +3,7 @@
     package="com.example.pilloclock">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM"/>
+    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
 
     <application
         android:allowBackup="true"
@@ -13,14 +13,17 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PillOClock">
         <activity
+            android:name=".MoreActivity"
+            android:exported="false" />
+        <activity
             android:name=".CalendarActivity"
             android:exported="false" />
         <activity
             android:name=".EditUserProfile"
-            android:exported="false"/>
+            android:exported="false" />
         <activity
             android:name=".DashboardActivity"
-            android:exported="false"/>
+            android:exported="false" />
         <activity
             android:name=".EditDetails"
             android:exported="false" />
@@ -57,10 +60,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <receiver
             android:name=".receiver.MyAlarmReceiver"
-            android:enabled="true" >
-        </receiver>
+            android:enabled="true"></receiver>
     </application>
 
 </manifest>

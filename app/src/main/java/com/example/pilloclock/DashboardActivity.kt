@@ -54,9 +54,10 @@ class DashboardActivity : AppCompatActivity() {
                     val intent = Intent(this, MedicationList::class.java)
                     startActivity(intent);
                 }
-//                R.id.bottom_nav_item_more -> {
-//                    val intent = Intent(this, MoreActivity::class.java)
-//                   startActivity(intent);
+                R.id.bottom_nav_item_more -> {
+                    val intent = Intent(this, MoreActivity::class.java)
+                    startActivity(intent);
+                }
             }
             true
         }

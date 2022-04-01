@@ -1,11 +1,16 @@
 package com.example.pilloclock
 
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.content.Context
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import com.example.example.FDAMedicationResponse
+import com.example.pilloclock.receiver.CHANNEL_ID
 import com.example.pilloclock.services.FDAMedicationService
 import retrofit2.Call
 import retrofit2.Callback
@@ -19,37 +24,42 @@ class LandingPageActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_landing_page)
 
-        var loginButton = findViewById<Button>(R.id.login_button)
-        var signUpButton = findViewById<Button>(R.id.sign_up_button)
-        var skipButton = findViewById<Button>(R.id.skip_button)
+        createNotificationChannel()
 
+        val btnLogInClick = findViewById<Button>(R.id.login)
+        btnLogInClick.setOnClickListener {
+            val intent = Intent(this, LoginActivity::class.java)
+            // start LoginActivity
+            startActivity(intent)
+        }
+        val btnSignUpClick = findViewById<Button>(R.id.signup)
+        btnSignUpClick.setOnClickListener {
+            val intent = Intent(this, SignUpActivity::class.java)
+            // start SignUpActivity
+            startActivity(intent)
+        }
+        val btnSkip = findViewById<Button>(R.id.skip)
+        btnSkip.setOnClickListener {
+            val intent = Intent(this, DashboardActivity::class.java)
+            // skips to dashboard
+            startActivity(intent)
+        }
+    }
 
-
-        loginButton.setOnClickListener(
-            object : View.OnClickListener {
-                override fun onClick(v: View?) {
-                    val intent = Intent(this@LandingPageActivity, LoginActivity::class.java)
-                    startActivity(intent);
-                }
+    private fun createNotificationChannel() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val name = getString(R.string.channel_name)
+            val descriptionText = getString(R.string.channel_description)
+            val importance = NotificationManager.IMPORTANCE_DEFAULT
+            val channel = NotificationChannel(CHANNEL_ID, name, importance).apply {
+                description = descriptionText
             }
-        )
-
-        signUpButton.setOnClickListener(
-            object : View.OnClickListener {
-                override fun onClick(v: View?) {
-                    val intent = Intent(this@LandingPageActivity, SignUpActivity::class.java)
-                    startActivity(intent);
-                }
-            }
-        )
-
-        skipButton.setOnClickListener(
-            object : View.OnClickListener {
-                override fun onClick(v: View?) {
-                    val intent = Intent(this@LandingPageActivity, DashboardActivity::class.java)
-                    startActivity(intent);
-                }
-            }
-        )
+            val notificationManager: NotificationManager =
+                getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+            notificationManager.createNotificationChannel(channel)
+        }
     }
 }
+
+
+
