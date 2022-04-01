@@ -13,6 +13,7 @@ import com.example.pilloclock.data.AppDatabase
 import com.example.pilloclock.data.entity.Pill
 import com.example.pilloclock.data.repo.PillRepository
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import kotlinx.android.synthetic.main.activity_medication_list.*
 
 class MedicationList : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,12 +36,10 @@ class MedicationList : AppCompatActivity() {
             startActivity(intent)
         }
 
-        val addButton = findViewById<Button>(R.id.addButton)
-        addButton.setOnClickListener {
+        toolbarMedication.findViewById<View>(R.id.addIcon).setOnClickListener {
             val intent = Intent(this, AddMedication::class.java)
             startActivity(intent)
         }
-
         // Bottom Navigation Bar
         // Set Selected
         bottomNavigation.setSelectedItemId(R.id.bottom_nav_item_medications)
